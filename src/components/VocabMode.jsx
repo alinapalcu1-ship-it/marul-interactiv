@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { imagePath } from '../data/scenes';
 import './vocabulary.css';
 
-// Exactly the words spoken in the nine new Antonia recordings.
+// Exactly the words spoken in the ten new Antonia recordings.
 // Audio files live in public/assets/vocabulary/ and are uploaded separately.
 const recordings = {
   instructiune: { text: 'Atinge o imagine. Ascultă cuvântul. Repetă.', file: 'instructiune.mp3' },
@@ -11,6 +11,7 @@ const recordings = {
   frunza: { text: 'Frunza', file: 'frunza.mp3' },
   rosu: { text: 'Măr roșu', file: 'mar-rosu.mp3', image: 'red' },
   verde: { text: 'Măr verde', file: 'mar-verde.mp3', image: 'green' },
+  galben: { text: 'Măr galben', file: 'mar-galben.mp3', image: 'yellow' },
   minge: { text: 'Minge', file: 'minge.mp3', image: 'ball' },
   intrebare: { text: 'Ce culoare are mărul?', file: 'intrebare-culoare.mp3' },
   altele: { text: 'Alte cuvinte din poezie.', file: 'alte-cuvinte.mp3' },
@@ -126,7 +127,7 @@ export default function VocabMode({ sound, onHome, onListen, onPlay }) {
     </section>
     <section className="vocab-section" aria-labelledby="vocab-colors">
       <SpokenHeading id="vocab-colors" title="Ce culoare are mărul?" recording="intrebare" play={play}/>
-      <div className="vocab-word-grid vocab-two-colors">{['rosu', 'verde'].map(word =>
+      <div className="vocab-word-grid vocab-two-colors">{['rosu', 'verde', 'galben'].map(word =>
         <WordPicture key={word} word={word} active={chosen === word} play={play}/>)}</div>
     </section>
     <section className="vocab-section" aria-labelledby="vocab-others">
