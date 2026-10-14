@@ -114,3 +114,58 @@
   .vocab-picture-word img { transition: none; }
   .vocab-picture-word:active img { transform: none; }
 }
+
+
+/* Recorded vocabulary: clear section prompts and accurately named objects. */
+.vocab-intro-audio,
+.vocab-heading-audio {
+  border: 2px solid #b6caa2;
+  background: #e8f0dd;
+  color: #3a593f;
+  font-weight: 800;
+  min-height: 52px;
+  border-radius: 24px;
+  padding: 10px 18px;
+  font-size: clamp(15px, 1.6vw, 22px);
+  box-shadow: 0 3px 0 #d1dfc0;
+}
+.vocab-heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.vocab-heading-row h2 { margin: 0; }
+.vocab-leaf-hotspot {
+  top: 3%; left: 67%;
+  width: 32%; height: 27%;
+  align-items: start;
+}
+.vocab-leaf-hotspot .vocab-hotspot-label {
+  position: absolute;
+  right: 0;
+  top: 2%;
+}
+.vocab-stem-hotspot {
+  left: 29%; top: 3%; width: 32%; height: 27%;
+}
+.vocab-stem-hotspot .vocab-hotspot-label {
+  right: auto; left: 0; top: 2%;
+}
+.vocab-three-colors { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1050px; margin: 0 auto; }
+.vocab-one-word { grid-template-columns: minmax(0, 1fr); max-width: 380px; margin: 0 auto; }
+@media (max-width: 700px) {
+  .vocab-heading-row { flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .vocab-heading-audio, .vocab-intro-audio { font-size: 16px; min-height: 52px; }
+  .vocab-stem-hotspot { left: 26%; width: 37%; }
+  .vocab-leaf-hotspot { left: 64%; width: 36%; }
+  .vocab-stem-hotspot .vocab-hotspot-label, .vocab-leaf-hotspot .vocab-hotspot-label {
+    padding: 7px 9px;
+    font-size: 15px;
+  }
+  .vocab-three-colors { max-width: 100%; }
+  .vocab-three-colors .vocab-picture-word img { height: clamp(90px, 26vw, 160px); }
+  .vocab-one-word { max-width: min(72vw, 300px); }
+}
