@@ -127,7 +127,7 @@ export default function VocabMode({ sound, onHome, onListen, onPlay }) {
     </section>
     <section className="vocab-section" aria-labelledby="vocab-colors">
       <SpokenHeading id="vocab-colors" title="Ce culoare are mărul?" recording="intrebare" play={play}/>
-      <div className="vocab-word-grid vocab-two-colors">{['rosu', 'verde', 'galben'].map(word =>
+      <div className="vocab-word-grid vocab-three-colors">{['rosu', 'verde', 'galben'].map(word =>
         <WordPicture key={word} word={word} active={chosen === word} play={play}/>)}</div>
     </section>
     <section className="vocab-section" aria-labelledby="vocab-others">
