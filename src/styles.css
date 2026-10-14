@@ -239,3 +239,33 @@ footer { border-top: 1px solid #e5e8d8; display: flex; justify-content: space-be
   .recital-stage .recital-friends { width: min(98cqw, 190cqh); height: 96cqh; }
   .recital-friends > .recital-art { height: 98%; }
 }
+
+
+/* Refined typographic system — warm and child-friendly, never cartoonish.
+   Fonts are local assets provided by the GitHub Pages build. */
+:root {
+  --font-display: 'Fredoka', 'Arial Rounded MT Bold', ui-rounded, 'Trebuchet MS', sans-serif;
+  --font-reading: 'Nunito', 'Avenir Next', ui-rounded, 'Segoe UI', sans-serif;
+  font-family: var(--font-reading);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, .brand, .game-option strong, .game-title,
+.vocab-picture-label, .vocab-hotspot-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -.014em;
+}
+.home h1, .vocab-heading h1 {
+  font-weight: 650;
+  letter-spacing: -.025em;
+}
+.verse { font-weight: 600; letter-spacing: -.015em; }
+.button, .pill { font-family: var(--font-reading); font-weight: 800; letter-spacing: 0; }
+.eyebrow { font-family: var(--font-reading); font-weight: 850; letter-spacing: .11em; }
+@media (max-width: 600px) {
+  .verse { line-height: 1.21; }
+  .brand { letter-spacing: -.01em; }
+}
