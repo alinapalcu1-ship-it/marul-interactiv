@@ -1,0 +1,82 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "6395B63041ADCF450D5BDE55B564EE44EFF9745CC4CFA47F72710BCA4A70219B",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\00_titlu_marul.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "73616FDAF04CF4E671E45DC716876EB73B10D90CF346B503A091DA4B47DE5C1F",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\01_marul_este_rotunjor.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2E1C4C89DE5B8F608E160B2509BF4325FC965101428BF62B377AAA8F0F5BAA87",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\02_rosu.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A416A69D7D06E454AD0A1AF88E175B6186A2CE5947E323C2E25ACAA9B3AD7173",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\03_verde.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "44AC4AB1147AC626962340A971FEF51A0B1145B2D99ED1730286AA56D60CBD0F",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\04_galbior.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "CC588BA13728C3AC8A265220DB6E16183CF424F3AD27720343331ED8BC7DEB0D",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\05_parca_i_minge.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "10A815FE67D7811CC162A2A3ED6E27BB5E4FBFFC2220061F6745C0B6D4914103",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\06_dar_nu_sare.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "A7143C18CE4F779CCB85CC1D588D5A5AEEADB1E78F8949ABF8C724A78E4CB38E",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\07_si_codita_mica_are.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "25E0CEF811FB369B692C6EE192E8F091DAD1D763B6433ED8E64B211D0666FF5D",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\08_parfumat.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "45BE366F88FEF2B53AB21224544E73CFE8C3F5FB43792B0864C4308B8C4CB2F1",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\09_dar_si_gustos.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "26C0E2B2BF2AD8218A6014A71490F802E72F202F978C81A0CC4993E58846AB19",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\10_el_ma_face_sanatos.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "AE2EBFF4C42D747CB63E71CD101DA7C0FCCEA5FBE56D63F09B630CF98A59BF80",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\bravo.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "2B0233972219AF0AE1D703733549A857A24AA82F425BCB05F687A85464C70AB5",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\home-intro.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "266907D5AC2B38011679D42CB6CB90EADCA53515B135F61A0E1AF893133CBBFF",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\instruction-sort-apples.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "061E9F4115F8CDB12284971CC8011F0C4161179C2D2B564D250B802087C89E8E",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\play-background-music.mp3"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "9D76160C14A628265F92F41DEE35210C768B5E3D56A2B441B9DE8A865C348DD5",
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\question-more-apples.mp3"
+  }
+]

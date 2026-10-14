@@ -1,0 +1,203 @@
+{
+  "total_duration_sec": 28.997,
+  "fragments": [
+    {
+      "index": 0,
+      "file": "00_titlu_marul.mp3",
+      "text": "Mărul",
+      "scene": "titlu",
+      "start_sec": 0.0,
+      "end_sec": 0.836,
+      "duration_sec": 0.836,
+      "pause_after_sec": 1.8,
+      "next_start_sec": 2.636
+    },
+    {
+      "index": 1,
+      "file": "01_marul_este_rotunjor.mp3",
+      "text": "Mărul este rotunjor",
+      "scene": "scena_1_rotunjor",
+      "start_sec": 2.636,
+      "end_sec": 4.595,
+      "duration_sec": 1.959,
+      "pause_after_sec": 1.4,
+      "next_start_sec": 5.995
+    },
+    {
+      "index": 2,
+      "file": "02_rosu.mp3",
+      "text": "Roșu",
+      "scene": "scena_2_culori",
+      "start_sec": 5.995,
+      "end_sec": 6.831,
+      "duration_sec": 0.836,
+      "pause_after_sec": 1.3,
+      "next_start_sec": 8.131
+    },
+    {
+      "index": 3,
+      "file": "03_verde.mp3",
+      "text": "Verde",
+      "scene": "scena_2_culori",
+      "start_sec": 8.131,
+      "end_sec": 9.124,
+      "duration_sec": 0.993,
+      "pause_after_sec": 1.3,
+      "next_start_sec": 10.424
+    },
+    {
+      "index": 4,
+      "file": "04_galbior.mp3",
+      "text": "Gălbior",
+      "scene": "scena_2_culori",
+      "start_sec": 10.424,
+      "end_sec": 11.417,
+      "duration_sec": 0.993,
+      "pause_after_sec": 1.6,
+      "next_start_sec": 13.017
+    },
+    {
+      "index": 5,
+      "file": "05_parca_i_minge.mp3",
+      "text": "Parcă-i minge",
+      "scene": "scena_3_parca_i_minge",
+      "start_sec": 13.017,
+      "end_sec": 14.506,
+      "duration_sec": 1.489,
+      "pause_after_sec": 1.2,
+      "next_start_sec": 15.706
+    },
+    {
+      "index": 6,
+      "file": "06_dar_nu_sare.mp3",
+      "text": "Dar nu sare",
+      "scene": "scena_4_dar_nu_sare",
+      "start_sec": 15.706,
+      "end_sec": 16.934,
+      "duration_sec": 1.228,
+      "pause_after_sec": 1.2,
+      "next_start_sec": 18.134
+    },
+    {
+      "index": 7,
+      "file": "07_si_codita_mica_are.mp3",
+      "text": "Și codiță mică are",
+      "scene": "scena_5_codita",
+      "start_sec": 18.134,
+      "end_sec": 19.858,
+      "duration_sec": 1.724,
+      "pause_after_sec": 1.5,
+      "next_start_sec": 21.358
+    },
+    {
+      "index": 8,
+      "file": "08_parfumat.mp3",
+      "text": "Parfumat",
+      "scene": "scena_6_parfumat",
+      "start_sec": 21.358,
+      "end_sec": 22.586,
+      "duration_sec": 1.228,
+      "pause_after_sec": 1.1,
+      "next_start_sec": 23.686
+    },
+    {
+      "index": 9,
+      "file": "09_dar_si_gustos.mp3",
+      "text": "dar și gustos",
+      "scene": "scena_6_parfumat",
+      "start_sec": 23.686,
+      "end_sec": 25.175,
+      "duration_sec": 1.489,
+      "pause_after_sec": 1.4,
+      "next_start_sec": 26.575
+    },
+    {
+      "index": 10,
+      "file": "10_el_ma_face_sanatos.mp3",
+      "text": "El mă face sănătos!",
+      "scene": "scena_7_sanatos",
+      "start_sec": 26.575,
+      "end_sec": 28.299,
+      "duration_sec": 1.724,
+      "pause_after_sec": 0.7,
+      "next_start_sec": 28.999
+    }
+  ],
+  "scenes": [
+    {
+      "scene_key": "titlu",
+      "title": "Titlu: Mărul",
+      "start_sec": 0.0,
+      "end_sec": 2.636,
+      "main_audio_files": [
+        "00_titlu_marul.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_1_rotunjor",
+      "title": "Scena 1: Mărul este rotunjor",
+      "start_sec": 2.636,
+      "end_sec": 5.995,
+      "main_audio_files": [
+        "01_marul_este_rotunjor.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_2_culori",
+      "title": "Scena 2: Roșu, verde, gălbior",
+      "start_sec": 5.995,
+      "end_sec": 13.017,
+      "main_audio_files": [
+        "02_rosu.mp3",
+        "03_verde.mp3",
+        "04_galbior.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_3_parca_i_minge",
+      "title": "Scena 3: Parcă-i minge",
+      "start_sec": 13.017,
+      "end_sec": 15.706,
+      "main_audio_files": [
+        "05_parca_i_minge.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_4_dar_nu_sare",
+      "title": "Scena 4: Dar nu sare",
+      "start_sec": 15.706,
+      "end_sec": 18.134,
+      "main_audio_files": [
+        "06_dar_nu_sare.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_5_codita",
+      "title": "Scena 5: Și codiță mică are",
+      "start_sec": 18.134,
+      "end_sec": 21.358,
+      "main_audio_files": [
+        "07_si_codita_mica_are.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_6_parfumat",
+      "title": "Scena 6: Parfumat, dar și gustos",
+      "start_sec": 21.358,
+      "end_sec": 26.575,
+      "main_audio_files": [
+        "08_parfumat.mp3",
+        "09_dar_si_gustos.mp3"
+      ]
+    },
+    {
+      "scene_key": "scena_7_sanatos",
+      "title": "Scena 7: El mă face sănătos!",
+      "start_sec": 26.575,
+      "end_sec": 28.999,
+      "main_audio_files": [
+        "10_el_ma_face_sanatos.mp3"
+      ]
+    }
+  ]
+}

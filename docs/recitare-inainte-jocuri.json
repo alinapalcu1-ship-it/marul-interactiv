@@ -1,0 +1,138 @@
+[
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\audio.js",
+    "Hash": "FB29D2B846F16125278C987115EAFB5EE78F6057F7E799D47B9F7E2C24E3AD89"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\clip-player.js",
+    "Hash": "373EB8C0CDE4687E46D9110F66D6AFEA0B1E29BBDD50D6381D121BEF1DE60021"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\main.jsx",
+    "Hash": "C5663ABE90B582EECFA6113B43FAECE7182D451FC4C1DE15E77B748C0C0E3EA0"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\styles.css",
+    "Hash": "C21F5269FF0E6760EB376ABD236A61C4F5C9FC83DE3CDA52D506C2017265A2CD"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\ControlBar.jsx",
+    "Hash": "E44183C665B94F7A30B73E051A691D54D3FC598F10E69072C3D472D1D18ECB5D"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\HomeScreen.jsx",
+    "Hash": "D09E7D6B9CA3B63142ADB5CE2879C80CD227EA71D5B26D333B92D9E86C50A2DA"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\ObjectToy.jsx",
+    "Hash": "E6076EA4622754E49E7654806270708D0BB602D7D6582D5D2AED5C75842ECA5F"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\ProgressDots.jsx",
+    "Hash": "5DB78CFF9267B0B3CA5B4B89BF7AC476ABAC21D781E100457F7B4DFEA7932E88"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\SceneArtwork.jsx",
+    "Hash": "2602BC32ED29F5508EAA49918A8299BE0BD0250A2D28871D4A1A97524433DBA8"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\components\\ScenePlayer.jsx",
+    "Hash": "C43BACDE3E174993A7ECB49B8C735EE3B02F8F86C28AC293F830651A243EA6F1"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\src\\data\\scenes.js",
+    "Hash": "6527D21B6A2E78E9664F5571486F3C744EC8C8FF4A8A518A3AE109EFB2B3674A"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\apple-character.png",
+    "Hash": "9548D416E9B9B2676772772008403D22AA7D502A48524A48F18112971E133BF1"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\apple-green.png",
+    "Hash": "91DED165EEB08F2B5AF49BE31AE300750AAA19BD438E10AD3F543728D9210DA7"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\apple-red.png",
+    "Hash": "AD372530FA6D9E0E24F743BF9B51D23638E2B8C0A3C22A8B1602D76A984D9F88"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\apple-yellow.png",
+    "Hash": "C9B0AD7C43890F52319156EA58353D9F219C2F7B6B2093F60249F2CA58E6313B"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio-poem.mp3",
+    "Hash": "273CF7268240AAE2722802BBDEBB9D46EC5987F678A5130D286E9B402F971700"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\ball.png",
+    "Hash": "53DC3E35C609DAF5FFB4BAA7A5F3BFA4A2CC5649C31C48287E8FB1B53EAADDDC"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\boy.png",
+    "Hash": "9958A466FF3584EEAEFB068E2D1A91E1455E2CB492E66919E1A8862544611612"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\girl.png",
+    "Hash": "A5F441827C61DA4800E5D598DB1D0511935B958D7AE4FC65D66D0C0AD2E6820D"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\healthy-heart.png",
+    "Hash": "3B801A11EADCC72CD93B3CFFBA55E15076C657DD92A0A9D6ECB48CE30BC4A979"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\scent.png",
+    "Hash": "FD24AF3D3E60369E9036516D11529147E8435897F6B69EB305C2D23B71AA5435"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\stem-leaf.png",
+    "Hash": "F30132555A9A25436AF865F6829402D1B0916EEB27C3AFB8F5D22FB3851484F1"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\00_titlu_marul.mp3",
+    "Hash": "6395B63041ADCF450D5BDE55B564EE44EFF9745CC4CFA47F72710BCA4A70219B"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\01_marul_este_rotunjor.mp3",
+    "Hash": "73616FDAF04CF4E671E45DC716876EB73B10D90CF346B503A091DA4B47DE5C1F"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\02_rosu.mp3",
+    "Hash": "2E1C4C89DE5B8F608E160B2509BF4325FC965101428BF62B377AAA8F0F5BAA87"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\03_verde.mp3",
+    "Hash": "A416A69D7D06E454AD0A1AF88E175B6186A2CE5947E323C2E25ACAA9B3AD7173"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\04_galbior.mp3",
+    "Hash": "44AC4AB1147AC626962340A971FEF51A0B1145B2D99ED1730286AA56D60CBD0F"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\05_parca_i_minge.mp3",
+    "Hash": "CC588BA13728C3AC8A265220DB6E16183CF424F3AD27720343331ED8BC7DEB0D"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\06_dar_nu_sare.mp3",
+    "Hash": "10A815FE67D7811CC162A2A3ED6E27BB5E4FBFFC2220061F6745C0B6D4914103"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\07_si_codita_mica_are.mp3",
+    "Hash": "A7143C18CE4F779CCB85CC1D588D5A5AEEADB1E78F8949ABF8C724A78E4CB38E"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\08_parfumat.mp3",
+    "Hash": "25E0CEF811FB369B692C6EE192E8F091DAD1D763B6433ED8E64B211D0666FF5D"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\09_dar_si_gustos.mp3",
+    "Hash": "45BE366F88FEF2B53AB21224544E73CFE8C3F5FB43792B0864C4308B8C4CB2F1"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\public\\assets\\audio\\10_el_ma_face_sanatos.mp3",
+    "Hash": "26C0E2B2BF2AD8218A6014A71490F802E72F202F978C81A0CC4993E58846AB19"
+  },
+  {
+    "Path": "C:\\Users\\teodo\\Documents\\ChatGPT\\Mărul\\manifest_timing_audio.json",
+    "Hash": "84D2360D8D40B75B0DF859401B80BE4067E2DFDA6DFA577F5B894233FCB3A8B6"
+  }
+]

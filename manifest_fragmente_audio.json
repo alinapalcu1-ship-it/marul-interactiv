@@ -1,0 +1,90 @@
+[
+  {
+    "id": "00_titlu",
+    "text": "Mărul",
+    "scene": 0,
+    "cue": "titlu",
+    "asset": "apple-character.png",
+    "expectedFile": "audio_fragmente/00_titlu.mp3"
+  },
+  {
+    "id": "01_marul_este_rotunjor",
+    "text": "Mărul este rotunjor,",
+    "scene": 1,
+    "cue": "rotunjor",
+    "asset": "apple-character.png",
+    "expectedFile": "audio_fragmente/01_marul_este_rotunjor.mp3"
+  },
+  {
+    "id": "02_rosu",
+    "text": "Roșu,",
+    "scene": 2,
+    "cue": "rosu",
+    "asset": "apple-red.png",
+    "expectedFile": "audio_fragmente/02_rosu.mp3"
+  },
+  {
+    "id": "03_verde",
+    "text": "verde,",
+    "scene": 2,
+    "cue": "verde",
+    "asset": "apple-green.png",
+    "expectedFile": "audio_fragmente/03_verde.mp3"
+  },
+  {
+    "id": "04_galbior",
+    "text": "gălbior.",
+    "scene": 2,
+    "cue": "galbior",
+    "asset": "apple-yellow.png",
+    "expectedFile": "audio_fragmente/04_galbior.mp3"
+  },
+  {
+    "id": "05_parca_i_minge",
+    "text": "Parcă-i minge,",
+    "scene": 3,
+    "cue": "minge",
+    "asset": "ball.png",
+    "expectedFile": "audio_fragmente/05_parca_i_minge.mp3"
+  },
+  {
+    "id": "06_dar_nu_sare",
+    "text": "Dar nu sare",
+    "scene": 4,
+    "cue": "nu_sare",
+    "asset": "apple-red.png",
+    "expectedFile": "audio_fragmente/06_dar_nu_sare.mp3"
+  },
+  {
+    "id": "07_si_codita_mica_are",
+    "text": "Și codiță mică are.",
+    "scene": 5,
+    "cue": "codita",
+    "asset": "stem-leaf.png",
+    "expectedFile": "audio_fragmente/07_si_codita_mica_are.mp3"
+  },
+  {
+    "id": "08_parfumat",
+    "text": "Parfumat,",
+    "scene": 6,
+    "cue": "parfumat",
+    "asset": "scent.png",
+    "expectedFile": "audio_fragmente/08_parfumat.mp3"
+  },
+  {
+    "id": "09_dar_si_gustos",
+    "text": "dar și gustos,",
+    "scene": 6,
+    "cue": "gustos",
+    "asset": "apple-red.png",
+    "expectedFile": "audio_fragmente/09_dar_si_gustos.mp3"
+  },
+  {
+    "id": "10_el_ma_face_sanatos",
+    "text": "El mă face sănătos!",
+    "scene": 7,
+    "cue": "sanatos",
+    "asset": "healthy-heart.png",
+    "expectedFile": "audio_fragmente/10_el_ma_face_sanatos.mp3"
+  }
+]

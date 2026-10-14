@@ -1,0 +1,45 @@
+{
+  "project": "Mărul – resursă animată interactivă pentru 2–3 ani",
+  "assets": [
+    {
+      "filename": "apple-character.png",
+      "description": "Măr roșu personaj, principal"
+    },
+    {
+      "filename": "girl.png",
+      "description": "Fetiță cu două codițe"
+    },
+    {
+      "filename": "boy.png",
+      "description": "Băiețel cu salopetă"
+    },
+    {
+      "filename": "apple-red.png",
+      "description": "Măr ROȘU pentru versul despre culori"
+    },
+    {
+      "filename": "apple-green.png",
+      "description": "Măr VERDE pentru versul despre culori"
+    },
+    {
+      "filename": "apple-yellow.png",
+      "description": "Măr GALBEN pentru versul despre culori"
+    },
+    {
+      "filename": "ball.png",
+      "description": "MINGE multicoloră cu față, pentru «Parcă-i minge»"
+    },
+    {
+      "filename": "stem-leaf.png",
+      "description": "CODIȚĂ maro cu frunză verde"
+    },
+    {
+      "filename": "scent.png",
+      "description": "PARFUM – volute aurii"
+    },
+    {
+      "filename": "healthy-heart.png",
+      "description": "INIMĂ roșie cu simbol verde, pentru «sănătos»"
+    }
+  ]
+}
