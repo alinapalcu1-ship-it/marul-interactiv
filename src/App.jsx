@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import HomeScreen from './components/HomeScreen';
 import ScenePlayer from './components/ScenePlayer';
 import PlayMode from './components/PlayMode';
+import VocabMode from './components/VocabMode';
 import { stopClip } from './audio';
 import { audioPath, imagePath } from './data/scenes';
 
@@ -43,9 +44,10 @@ export default function App() {
         {document.fullscreenEnabled && <button className="pill fullscreen-button" aria-label={fullscreen ? 'Ieși din ecran complet' : 'Ecran complet'} onClick={toggleFullscreen}>⛶<span> {fullscreen ? 'Micșorează' : 'Ecran complet'}</span></button>}
       </div>
     </header>
-    {screen === 'home' ? <HomeScreen sound={sound} onListen={() => navigate('listen')} onPlay={() => navigate('play')}/>
+    {screen === 'home' ? <HomeScreen sound={sound} onListen={() => navigate('listen')} onPlay={() => navigate('play')} onVocab={() => navigate('vocab')}/>
       : screen === 'listen' ? <ScenePlayer audio={audio} notice={notice} setNotice={setNotice} onHome={() => navigate('home')} onPlay={() => navigate('play')}/>
-      : <PlayMode sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')}/>}
+      : screen === 'vocab' ? <VocabMode sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')} onPlay={() => navigate('play')}/>
+      : <PlayMode sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')} onVocab={() => navigate('vocab')}/>}
     {screen !== 'listen' && <><p className="notice" role="status">{notice}</p><footer>♡ Cu bucurie, pentru cei mici <span>2–3 ani · Ascultă. Descoperă. Zâmbește.</span></footer></>}
   </div>;
 }
