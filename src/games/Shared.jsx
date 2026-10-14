@@ -1,11 +1,12 @@
-import { useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import CharacterSprite from '../components/CharacterSprite';
 import { imagePath } from '../data/scenes';
 import { names } from './logic';
 
 export function Character({ name, celebrate = false }) {
   const reduce = useReducedMotion();
-  return <CharacterSprite className="game-character" name={name} wave={celebrate}
+  const Wrapper = name === 'apple' ? motion.img : CharacterSprite;
+  return <Wrapper className="game-character" {...(name === 'apple' ? { src: imagePath('apple'), alt: 'Mărul' } : { name, wave: celebrate })}
     animate={celebrate && !reduce ? { scale: [1, 1.07, 1], rotate: [0, -3, 3, 0] } : { scale: 1, rotate: 0 }}
     transition={{ duration: 1.1, ease: 'easeInOut' }}/>;
 }

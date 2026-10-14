@@ -229,3 +229,18 @@
  .game-menu .game-option-icon { flex-basis: 52px; width: 52px; height: 52px; font-size: 39px; }
  .game-menu .game-option small { display: block; }
 }
+
+/* Correct horizontal strip puzzle: top (head), middle (body), bottom (feet).
+   The original full-size image stays aligned across every piece, with no stretching. */
+.puzzle-slice-image { position: absolute; inset: 0; display: block; pointer-events: none; }
+.puzzle-horizontal .puzzle-board,
+.puzzle-horizontal .puzzle-tray {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(var(--pieces), minmax(0, 1fr));
+}
+.puzzle-horizontal .puzzle-piece,
+.puzzle-horizontal .puzzle-slot { min-width: 0; min-height: 0; }
+.puzzle-horizontal .puzzle-tray { gap: 7px; }
+@media (max-width: 600px) {
+  .puzzle-horizontal .puzzle-tray { gap: 5px; }
+}

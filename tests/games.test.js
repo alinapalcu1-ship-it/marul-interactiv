@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { characters, matchingRound, memoryDeck, matchingCards, sliceStyle, closeToSlot, sortingApples, canSort, largerBasket } from '../src/games/logic.js';
+import { characters, matchingRound, memoryDeck, matchingCards, sliceStyle, sliceBackgroundStyle, closeToSlot, sortingApples, canSort, largerBasket } from '../src/games/logic.js';
 
 test('each matching level covers all characters and varies the correct position', () => {
   for (const level of [1, 2]) {
@@ -41,6 +41,20 @@ test('puzzle crops cover the source exactly for two and three pieces', () => {
       assert.ok(Math.abs(-parseFloat(style.left) / 100 / count - piece / count) < 1e-12);
     }
   }
+});
+
+
+test('three-piece puzzle crops the full image in horizontal bands', () => {
+  const url = '/assets/apple-red.png';
+  const expected = ['center 0%', 'center 50%', 'center 100%'];
+  for (let piece = 0; piece < 3; piece++) {
+    const style = sliceBackgroundStyle(piece, 3, url);
+    assert.equal(style.backgroundImage, `url("${url}")`);
+    assert.equal(style.backgroundSize, '100% 300%');
+    assert.equal(style.backgroundPosition, expected[piece]);
+    assert.equal(style.backgroundRepeat, 'no-repeat');
+  }
+  assert.equal(sliceBackgroundStyle(0, 2, url).backgroundSize, '200% 100%');
 });
 
 test('puzzle accepts a nearby correct slot, but not a distant drop', () => {

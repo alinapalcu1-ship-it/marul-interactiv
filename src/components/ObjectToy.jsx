@@ -21,8 +21,8 @@ export default function ObjectToy({ name, sound = false, className = '', wave = 
     timer.current = setTimeout(() => setGreeting(false), 2200);
     playClip(name, sound);
   }}>
-    {['apple', 'girl', 'boy'].includes(name) ? <CharacterSprite name={name} wave={wave || greeting}/> : <motion.img key={turn} src={imagePath(name)} alt={labels[name]} draggable="false"
-      animate={animation} transition={{ duration: 1.8, ease: 'easeInOut' }} />}
+    {['girl', 'boy'].includes(name) ? <CharacterSprite name={name} wave={wave || greeting}/> : <motion.img key={turn} src={imagePath(name)} alt={labels[name]} draggable="false"
+      animate={wave && name === 'apple' && !reduce ? { rotate: [0, -4, 4, 0] } : animation} transition={{ duration: 1.8, ease: 'easeInOut' }} />}
   </button>;
 }
 

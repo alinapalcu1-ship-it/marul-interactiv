@@ -61,14 +61,25 @@ footer { border-top: 1px solid #e5e8d8; display: flex; justify-content: space-be
 .recital-art { object-fit: contain; transform-origin: 50% 90%; }
 .solo-art { position: relative; width: min(78cqw, 75cqh); height: min(78cqw, 75cqh); }
 .solo-art > .recital-art { width: 100%; height: 100%; }
-/* Replace only the original stem area, anchoring the corrected stem at the apple's top. */
-.stem-composition > .recital-art { clip-path: polygon(0 0, 40% 0, 40% 29%, 87% 29%, 87% 0, 100% 0, 100% 100%, 0 100%); }
-.attached-stem { position: absolute; width: 53%; height: 53%; left: 36%; top: -13%; transform-origin: 30% 80%; }
-.stem-composition { transform-origin: 50% 25%; }
+/* The original red apple already has a clearly visible stem and leaf.
+   Draw only a transparent, soft highlight; never cover it with a panel. */
+.stem-scene { transform-origin: 50% 70%; }
+.stem-focus {
+  position: absolute; left: 42%; top: 0%; width: 23%; height: 25%;
+  border: 3px solid rgba(218, 169, 65, .85);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(247, 217, 110, .14), 0 0 22px rgba(235, 191, 74, .6);
+  background: transparent; pointer-events: none;
+}
+.stem-focus::after {
+  content: '✦'; position: absolute; top: -25%; right: -18%;
+  font-size: clamp(18px, 2vw, 40px); color: #e3af35; text-shadow: 0 0 9px #ffe9a5;
+}
+
 .aroma { position: absolute; width: 35%; height: 45%; top: 5%; right: -15%; object-fit: contain; pointer-events: none; }
 .recital-friends { position: relative; width: min(94cqw, 160cqh); height: 86cqh; display: grid; grid-template-columns: 1fr 1.18fr 1fr; align-items: end; gap: 2%; }
 .recital-friends > .recital-art { width: 100%; height: 90%; min-height: 0; }
-.recital-friends > .friend-heart { position: absolute; width: 17%; height: 28%; top: 0; right: 25%; }
+.recital-friends > .friend-heart { position: absolute; width: 22%; height: 31%; top: 0; right: 14%; filter: drop-shadow(0 6px 12px #8a9d6740); }
 .recital-colors { width: 94cqw; height: 85cqh; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 3%; }
 .color-slot { min-width: 0; height: 100%; display: grid; place-items: center; }
 .color-slot img { width: min(28cqw, 70cqh); height: min(28cqw, 70cqh); }
@@ -121,7 +132,7 @@ footer { border-top: 1px solid #e5e8d8; display: flex; justify-content: space-be
   .recital-friends { width: 92cqw; height: 90cqh; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0; }
   .recital-friends .friend-apple { grid-column: 1 / 3; grid-row: 1; width: 100%; height: 100%; }
   .recital-friends .friend-girl, .recital-friends .friend-boy { height: 100%; }
-  .recital-friends .friend-heart { width: 27%; height: 27%; right: 2%; top: 8%; }
+  .recital-friends .friend-heart { width: 29%; height: 29%; right: 1%; top: 2%; }
   .solo-art { width: min(82cqw, 73cqh); height: min(82cqw, 73cqh); }
 }
 @media (orientation: landscape) and (max-height: 600px) {

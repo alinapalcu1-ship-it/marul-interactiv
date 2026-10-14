@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { imagePath } from '../data/scenes';
-import { characters, closeToSlot, names, shuffle, sliceStyle } from './logic';
+import { characters, closeToSlot, names, shuffle, sliceBackgroundStyle } from './logic';
 import { Character, Levels } from './Shared';
 
 export default function PuzzleGame({ reward }) {
@@ -27,13 +27,13 @@ export default function PuzzleGame({ reward }) {
     setPlaced(previous => previous.includes(piece) ? previous : [...previous, piece]);
     setSelected(null); setHint('Foarte bine!'); reward();
   }
-  const slice = piece => <img src={imagePath(character)} alt="" draggable="false" style={sliceStyle(piece, count)}/>;
+  const slice = piece => <span className="puzzle-slice-image" aria-hidden="true" style={sliceBackgroundStyle(piece, count, imagePath(character))}/>;
   return <>
     <div className="puzzle-options"><Levels level={level} puzzle onChange={value => reset(character, value)}/>
       <div className="puzzle-characters" aria-label="Alege personajul">{characters.map(name =>
         <button key={name} aria-label={`Puzzle: ${names[name]}`} aria-pressed={character === name} onClick={() => reset(name)}><Character name={name}/></button>)}</div>
     </div>
-    <div className="puzzle-area" style={{ '--pieces': count }}>
+    <div className={'puzzle-area ' + (count === 3 ? 'puzzle-horizontal' : '')} style={{ '--pieces': count }}>
       <div className="puzzle-board" aria-label="Imaginea de completat">
         <img className="puzzle-guide" src={imagePath(character)} alt=""/>
         {complete ? <div className="completed-puzzle"><Character name={character} celebrate/></div>
