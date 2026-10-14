@@ -3,7 +3,7 @@ import timing from '../../manifest_timing_audio.json';
 // Relative URLs also work in a GitHub Pages repository subdirectory.
 const base = import.meta.env.BASE_URL;
 export const assets = {
-  apple: 'characters/apple-neutral', red: 'characters/apple-neutral', green: 'apple-green', yellow: 'apple-yellow',
+  apple: 'apple-red', red: 'apple-red', green: 'apple-green', yellow: 'apple-yellow',
   ball: 'ball', stem: 'stem-leaf', scent: 'scent', heart: 'healthy-heart', girl: 'characters/girl-neutral', boy: 'characters/boy-neutral',
 };
 export const imagePath = key => base + 'assets/' + assets[key] + '.png';
