@@ -265,3 +265,63 @@
 @media (max-width: 600px) {
   .puzzle-horizontal .puzzle-tray { gap: 5px; }
 }
+
+
+/* Puzzle — much larger assembled character art on a phone.
+   Use full-resolution images and keep the original 2- or 3-piece cropping.
+   On very short screens, scroll the puzzle workspace rather than shrinking
+   both the completed image and the loose pieces until they are unreadable. */
+@media (orientation: portrait) and (max-width: 900px) {
+  .game-puzzle-active .game-activity { gap: 4px; }
+  .game-puzzle-active .game-title { font-size: clamp(22px, 5.5vw, 28px); margin: 1px 0; }
+  .game-puzzle-active .puzzle-options { gap: clamp(6px, 2vw, 14px); }
+  .game-puzzle-active .puzzle-area {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scroll-padding: 10px;
+    padding: 7px 0 14px;
+    touch-action: pan-y;
+  }
+  .game-puzzle-active .puzzle-board {
+    width: min(92cqw, 370px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
+    max-width: 100%;
+    border-radius: 19px;
+  }
+  .game-puzzle-active .puzzle-tray {
+    width: min(86cqw, 345px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
+    max-width: 100%;
+    gap: 8px;
+  }
+  .game-puzzle-active .puzzle-piece {
+    border-radius: 12px;
+    box-shadow: 0 0 0 2px #cbd9b9, 0 5px 12px #59724c26;
+  }
+  .game-puzzle-active .puzzle-slot { border-width: 2px; }
+  .game-puzzle-active .puzzle-guide { opacity: .24; }
+  .game-puzzle-active .game-feedback { min-height: 38px; line-height: 1.15; }
+}
+/* Keep both panels large and alongside each other in landscape. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .game-puzzle-active .puzzle-area { flex-direction: row; justify-content: center; overflow: hidden; gap: 3%; }
+  .game-puzzle-active .puzzle-board,
+  .game-puzzle-active .puzzle-tray {
+    width: min(45cqw, 91cqh);
+    height: min(45cqw, 91cqh);
+    flex: 0 0 auto;
+    aspect-ratio: 1 / 1;
+  }
+}

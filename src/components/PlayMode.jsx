@@ -19,7 +19,7 @@ export default function PlayMode({ sound, onListen, onHome, onVocab }) {
   const [musicEnabled, setMusicEnabled] = useState(true);
   const { music, voice, speak, reward, stopVoice, resumeMusic, finishVoice } = useGameAudio(sound, musicEnabled);
   function leave(action) { stopVoice(); music.current.pause(); action(); }
-  return <main className={'games ' + (active ? 'game-active' : 'game-menu')}>
+  return <main className={'games ' + (active ? 'game-active' : 'game-menu') + (active?.id === 'puzzle' ? ' game-puzzle-active' : '')}>
     <audio ref={music} className="game-music" src={import.meta.env.BASE_URL + 'assets/audio/play-background-music.mp3'} loop preload="metadata"/>
     <audio ref={voice} className="game-voice" onEnded={finishVoice} onError={finishVoice}/>
     {active ? <>
