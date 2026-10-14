@@ -4,7 +4,9 @@ export function createVolumeFader(track, clock = {
   cancel: id => cancelAnimationFrame(id),
 }) {
   let frame;
-  function cancel() { clock.cancel(frame); }
+  function cancel() {
+    if (frame !== undefined) { clock.cancel(frame); frame = undefined; }
+  }
   function to(target, duration = 750) {
     cancel();
     const from = track.volume, start = clock.now();
