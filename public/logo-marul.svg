@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Mărul, pictogramă">
+<defs><radialGradient id="bg"><stop stop-color="#fffdf3"/><stop offset="1" stop-color="#f4e9d7"/></radialGradient><radialGradient id="red" cx=".28" cy=".22" r=".9"><stop stop-color="#ff9a6b"/><stop offset=".4" stop-color="#f5443e"/><stop offset="1" stop-color="#bd142c"/></radialGradient></defs>
+<circle cx="64" cy="64" r="61" fill="url(#bg)" stroke="#94ac76" stroke-width="6"/>
+<path d="M63 31q4-17 10-20" stroke="#7c4c2d" stroke-width="7" stroke-linecap="round" fill="none"/>
+<path d="M70 29Q87 9 106 22Q101 44 70 29" fill="#7cbb42" stroke="#56932e" stroke-width="2"/>
+<path d="M64 38C41 25 17 45 24 77c4 19 18 30 39 25 21 7 40-10 42-34 3-29-17-44-41-30" fill="url(#red)" stroke="#b82731" stroke-width="2"/>
+<ellipse cx="45" cy="65" rx="11" ry="13" fill="white"/><ellipse cx="81" cy="65" rx="11" ry="13" fill="white"/>
+<ellipse cx="48" cy="67" rx="6.5" ry="9" fill="#4a2927"/><ellipse cx="83" cy="67" rx="6.5" ry="9" fill="#4a2927"/>
+<circle cx="45" cy="63" r="2.5" fill="white"/><circle cx="80" cy="63" r="2.5" fill="white"/>
+<path d="M47 85q16 22 34 0" fill="none" stroke="#74272b" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="35" cy="83" rx="8" ry="4" fill="#ffad99" opacity=".65"/><ellipse cx="92" cy="83" rx="8" ry="4" fill="#ffad99" opacity=".65"/>
+</svg>

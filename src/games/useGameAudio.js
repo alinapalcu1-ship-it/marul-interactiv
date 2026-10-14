@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { createVolumeFader } from './volume-fader';
+import { createMusicGain } from './music-gain';
 
 // One manager owns all game audio. Replace the background MP3 without changing code.
 export default function useGameAudio(sound, musicEnabled) {
@@ -10,10 +10,14 @@ export default function useGameAudio(sound, musicEnabled) {
   state.current.musicEnabled = musicEnabled;
   const fade = useCallback((target, duration = 750) => {
     if (!music.current) return;
-    state.current.fader ||= createVolumeFader(music.current);
+    state.current.fader ||= createMusicGain(music.current);
     state.current.fader.to(target, duration);
   }, []);
   const resumeMusic = useCallback(() => {
+    if (music.current) {
+      state.current.fader ||= createMusicGain(music.current);
+      state.current.fader.unlock();
+    }
     if (!state.current.sound || !state.current.musicEnabled || document.hidden) return;
     music.current?.play().catch(() => {});
     fade(state.current.speaking ? .025 : .14);
@@ -67,7 +71,7 @@ export default function useGameAudio(sound, musicEnabled) {
     document.addEventListener('visibilitychange', visibility);
     return () => {
       document.removeEventListener('visibilitychange', visibility);
-      state.current.fader?.cancel();
+      state.current.fader?.dispose();
       background.pause(); narration.pause();
       background.currentTime = 0; narration.currentTime = 0;
       state.current.context?.close();
