@@ -168,3 +168,74 @@ footer { border-top: 1px solid #e5e8d8; display: flex; justify-content: space-be
   .home-actions .button { min-height: 60px; font-size: 18px; }
   .home-intro-button { min-height: 52px; font-size: 14px; }
 }
+
+
+/* 2026-10-14 – More legible recital characters on phones.
+   Only resize the illustration stage; verse titles and playback buttons retain
+   their own rows. All source images keep object-fit:contain and natural ratio. */
+@media (orientation: portrait) and (max-width: 900px) {
+  /* Solo apple, ball, stem and aroma: occupy much more of the available stage. */
+  .recital-stage .solo-art {
+    width: min(94cqw, 90cqh);
+    height: min(94cqw, 90cqh);
+  }
+  /* Three colors, introduced one after another in the same two-over-one layout. */
+  .recital-stage .recital-colors {
+    width: 98cqw;
+    height: 96cqh;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 47% 53%;
+    gap: 0;
+  }
+  .recital-colors .color-slot img {
+    width: min(52cqw, 50cqh);
+    height: min(52cqw, 50cqh);
+    max-width: none;
+  }
+  .recital-colors .color-yellow img {
+    width: min(60cqw, 54cqh);
+    height: min(60cqw, 54cqh);
+  }
+  /* Final scene and introduction: make the children and apple larger, but keep
+     them in two rows to avoid horizontal clipping in portrait. */
+  .recital-stage .recital-friends {
+    width: 96cqw;
+    height: 98cqh;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 53% 47%;
+    gap: 0;
+  }
+  .recital-friends .friend-apple {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .recital-friends .friend-girl,
+  .recital-friends .friend-boy {
+    width: 108%;
+    height: 115%;
+    justify-self: center;
+    align-self: end;
+  }
+  .recital-friends .friend-heart {
+    width: 27%;
+    height: 25%;
+    right: 2%;
+    top: 1%;
+  }
+}
+/* Wider landscape phone view: use spare width without touching the caption. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .recital-stage .solo-art {
+    width: min(82cqw, 92cqh);
+    height: min(82cqw, 92cqh);
+  }
+  .recital-stage .recital-colors { width: 98cqw; height: 96cqh; }
+  .recital-colors .color-slot img {
+    width: min(31cqw, 86cqh);
+    height: min(31cqw, 86cqh);
+  }
+  .recital-stage .recital-friends { width: min(98cqw, 190cqh); height: 96cqh; }
+  .recital-friends > .recital-art { height: 98%; }
+}
