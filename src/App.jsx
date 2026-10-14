@@ -8,6 +8,8 @@ import { audioPath, imagePath } from './data/scenes';
 
 export default function App() {
   const audio = useRef(null);
+  // Persistent player: starting it in the navigation tap permits audio on iOS.
+  const vocabularyAudio = useRef(null);
   const [screen, setScreen] = useState('home');
   const [sound, setSound] = useState(true);
   const [notice, setNotice] = useState('');
@@ -19,9 +21,27 @@ export default function App() {
   }, []);
 
   function navigate(next) {
-    stopClip(); audio.current.pause(); audio.current.currentTime = 0;
-    setNotice(''); setScreen(next);
-    // Start inside the user's tap, before mounting the player (mobile Safari).
+    stopClip();
+    audio.current.pause();
+    audio.current.currentTime = 0;
+    const vocabulary = vocabularyAudio.current;
+    if (vocabulary) {
+      vocabulary.pause();
+      vocabulary.currentTime = 0;
+    }
+    setNotice('');
+
+    // Mobile browsers allow speech from a real tap; starting it after
+    // a React effect / route transition can be blocked by autoplay policies.
+    if (next === 'vocab' && sound && vocabulary) {
+      vocabulary.src = import.meta.env.BASE_URL + 'assets/vocabulary/instructiune.mp3';
+      vocabulary.play().catch(error => {
+        if (error.name !== 'AbortError') {
+          setNotice('Sunetul poate fi pornit atingând o imagine.');
+        }
+      });
+    }
+    setScreen(next);
     if (next === 'listen') audio.current.play().catch(error => {
       if (error.name !== 'AbortError') setNotice('Apasă Redă pentru a asculta.');
     });
@@ -34,6 +54,7 @@ export default function App() {
   }
   return <div className={'app screen-' + screen + (screen === 'listen' ? ' reciting' : '')}>
     <audio ref={audio} src={audioPath} muted={!sound} preload="auto"/>
+    <audio ref={vocabularyAudio} preload="auto" aria-hidden="true"/>
     <header>
       <button className="brand" onClick={() => navigate('home')} aria-label="Mărul — Acasă">
         <img src={imagePath('apple')} alt=""/><span>Mărul<small>ÎNVĂȚĂM PRIN JOACĂ</small></span>
@@ -46,7 +67,7 @@ export default function App() {
     </header>
     {screen === 'home' ? <HomeScreen sound={sound} onListen={() => navigate('listen')} onPlay={() => navigate('play')} onVocab={() => navigate('vocab')}/>
       : screen === 'listen' ? <ScenePlayer audio={audio} notice={notice} setNotice={setNotice} onHome={() => navigate('home')} onPlay={() => navigate('play')}/>
-      : screen === 'vocab' ? <VocabMode sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')} onPlay={() => navigate('play')}/>
+      : screen === 'vocab' ? <VocabMode audio={vocabularyAudio} sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')} onPlay={() => navigate('play')}/>
       : <PlayMode sound={sound} onListen={() => navigate('listen')} onHome={() => navigate('home')} onVocab={() => navigate('vocab')}/>}
     {screen !== 'listen' && <><p className="notice" role="status">{notice}</p><footer>♡ Cu bucurie, pentru cei mici <span>2–3 ani · Ascultă. Descoperă. Zâmbește.</span></footer></>}
   </div>;
