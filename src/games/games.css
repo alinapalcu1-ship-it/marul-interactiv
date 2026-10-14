@@ -210,3 +210,22 @@
 }
 
 
+
+/* Mobile polish: large, accessible game choices without hiding their labels. */
+@media (max-width: 600px) {
+ .game-menu { justify-content: flex-start; overflow-y: auto; padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+ .game-menu .game-options { gap: 12px; }
+ .game-menu .game-option, .game-menu .game-option.option-sorting { min-height: 91px; padding: 13px 15px; gap: 14px; }
+ .game-menu .game-option-icon, .game-menu .option-sorting .game-option-icon { display: grid; place-items: center; flex: 0 0 62px; width: 62px; height: 62px; font-size: 44px; line-height: 1; }
+ .game-menu .game-option strong { font-size: clamp(19px, 5.1vw, 23px); line-height: 1.15; }
+ .game-menu .game-option small { display: block; font-size: 13px; margin-top: 4px; line-height: 1.2; }
+ .game-menu .game-option-arrow { margin-left: auto; font-size: 26px; }
+ .game-menu-footer button { min-height: 52px; }
+ .games .puzzle-characters button { width: 60px; height: 60px; }
+ .games .game-navigation .button { min-height: 52px; font-size: 15px; }
+}
+@media (max-height: 650px) and (orientation: portrait) {
+ .game-menu .game-option, .game-menu .game-option.option-sorting { min-height: 78px; padding: 9px 12px; }
+ .game-menu .game-option-icon { flex-basis: 52px; width: 52px; height: 52px; font-size: 39px; }
+ .game-menu .game-option small { display: block; }
+}
