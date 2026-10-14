@@ -1,3 +1,4 @@
+import { buildSceneTimeline, sceneIndexAt } from './sceneTimeline';
 import timing from '../../manifest_timing_audio.json';
 
 // Relative URLs also work in a GitHub Pages repository subdirectory.
@@ -11,16 +12,13 @@ export const audioPath = base + 'assets/audio-poem.mp3';
 export const labels = { apple: 'Mărul', red: 'Roșu', green: 'Verde', yellow: 'Gălbior', ball: 'Mingea', stem: 'Codița', scent: 'Parfumul', heart: 'Sănătate', girl: 'Fetița', boy: 'Băiețelul' };
 
 // Adjust timing in the supplied manifest, including the pauses between words.
-export const scenes = timing.scenes.slice(1).map(scene => ({
-  text: scene.title.replace(/^Scena \d+: /, ''),
-  start: scene.start_sec, end: scene.end_sec,
-}));
+export const scenes = buildSceneTimeline(timing);
 export const introEnd = scenes[0].start;
 export const duration = timing.total_duration_sec;
 export const colorTimes = timing.fragments.slice(2, 5).map(fragment => fragment.start_sec);
 export const tasteTime = timing.fragments[9].start_sec;
 export function sceneAt(time) {
-  return scenes.findLastIndex(scene => time >= scene.start);
+  return sceneIndexAt(scenes, time);
 }
 const fragmentIds = { apple: 1, red: 2, green: 3, yellow: 4, ball: 5, stem: 7, scent: 8, heart: 10 };
 export const clipPaths = Object.fromEntries(Object.entries(fragmentIds).map(([name, index]) =>
