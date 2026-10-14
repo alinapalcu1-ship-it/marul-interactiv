@@ -377,7 +377,7 @@
 }
 /* Even on short portrait phones, don't move the tray below the viewport. */
 @media (orientation: portrait) and (max-height: 680px) {
-  .screen-play.game-puzzle-active header { padding-top: 4px; padding-bottom: 4px; }
+  .screen-play:has(.game-puzzle-active) header { padding-top: 4px; padding-bottom: 4px; }
   .game-puzzle-active .game-title { font-size: 21px; margin: 0; }
   .game-puzzle-active .puzzle-options .game-levels button {
     min-height: 42px; padding: 4px 8px; font-size: 12px;
