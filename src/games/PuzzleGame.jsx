@@ -12,7 +12,6 @@ export default function PuzzleGame({ reward }) {
   const [order, setOrder] = useState([1, 0]);
   const [hint, setHint] = useState('Atinge o piesă, apoi locul ei!');
   const slots = useRef([]);
-  const workspace = useRef(null);
   const dragged = useRef(false);
   const reduce = useReducedMotion();
   const count = level + 1;
@@ -27,16 +26,6 @@ export default function PuzzleGame({ reward }) {
     if (piece !== slot) { setHint('Mai încearcă. Privește conturul!'); return; }
     setPlaced(previous => previous.includes(piece) ? previous : [...previous, piece]);
     setSelected(null); setHint('Foarte bine!'); reward();
-    // When the phone needs a taller workspace, bring the next loose piece
-    // back into view after a correct tap on the board.
-    if (placed.length + 1 < count) {
-      requestAnimationFrame(() => {
-        const area = workspace.current;
-        if (area && area.scrollHeight > area.clientHeight) {
-          area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-        }
-      });
-    }
   }
   const slice = piece => <span className="puzzle-slice-image" aria-hidden="true" style={sliceBackgroundStyle(piece, count, imagePath(character))}/>;
   return <>
@@ -44,7 +33,7 @@ export default function PuzzleGame({ reward }) {
       <div className="puzzle-characters" aria-label="Alege personajul">{characters.map(name =>
         <button key={name} aria-label={`Puzzle: ${names[name]}`} aria-pressed={character === name} onClick={() => reset(name)}><Character name={name}/></button>)}</div>
     </div>
-    <div ref={workspace} className={'puzzle-area ' + (count === 3 ? 'puzzle-horizontal' : '')} style={{ '--pieces': count }}>
+    <div className={'puzzle-area ' + (count === 3 ? 'puzzle-horizontal' : '')} style={{ '--pieces': count }}>
       <div className="puzzle-board" aria-label="Imaginea de completat">
         <img className="puzzle-guide" src={imagePath(character)} alt=""/>
         {complete ? <div className="completed-puzzle"><Character name={character} celebrate/></div>
@@ -68,10 +57,6 @@ export default function PuzzleGame({ reward }) {
           onClick={() => {
             if (dragged.current) return;
             setSelected(piece); setHint('Acum atinge locul piesei!');
-            const area = workspace.current;
-            if (area && area.scrollHeight > area.clientHeight) {
-              area.scrollTo({ top: 0, behavior: 'smooth' });
-            }
           }}>
           {slice(piece)}
         </motion.button>}
