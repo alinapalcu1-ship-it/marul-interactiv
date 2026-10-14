@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { imagePath } from '../data/scenes';
 import './vocabulary.css';
 
@@ -36,8 +36,7 @@ function SpokenHeading({ id, title, recording, play }) {
   </div>;
 }
 
-export default function VocabMode({ sound, onHome, onListen, onPlay }) {
-  const audio = useRef(null);
+export default function VocabMode({ audio, sound, onHome, onListen, onPlay }) {
   const [chosen, setChosen] = useState(null);
   const [error, setError] = useState('');
   const [speaking, setSpeaking] = useState(false);
@@ -45,15 +44,28 @@ export default function VocabMode({ sound, onHome, onListen, onPlay }) {
 
   useEffect(() => {
     const track = audio.current;
-    const onHidden = () => { if (document.hidden) { track.pause(); setSpeaking(false); } };
+    const syncPlayback = () => setSpeaking(!track.paused && !track.ended);
+    const playbackError = () => {
+      setSpeaking(false);
+      setError('Înregistrarea nu este disponibilă. Verifică fișierele audio.');
+    };
+    const onHidden = () => { if (document.hidden) track.pause(); };
+    track.addEventListener('play', syncPlayback);
+    track.addEventListener('pause', syncPlayback);
+    track.addEventListener('ended', syncPlayback);
+    track.addEventListener('error', playbackError);
     document.addEventListener('visibilitychange', onHidden);
+    syncPlayback(); // The welcome recording was started in the navigation tap.
     return () => {
       document.removeEventListener('visibilitychange', onHidden);
+      track.removeEventListener('play', syncPlayback);
+      track.removeEventListener('pause', syncPlayback);
+      track.removeEventListener('ended', syncPlayback);
+      track.removeEventListener('error', playbackError);
       track.pause();
-      track.removeAttribute('src');
-      track.load();
+      track.currentTime = 0;
     };
-  }, []);
+  }, [audio]);
 
   useEffect(() => {
     if (!sound && audio.current) { audio.current.pause(); setSpeaking(false); }
@@ -83,16 +95,10 @@ export default function VocabMode({ sound, onHome, onListen, onPlay }) {
   }
 
   return <main className="vocab-page">
-    <audio ref={audio} preload="none"
-      onEnded={() => setSpeaking(false)} onPause={() => setSpeaking(false)}
-      onError={() => { setSpeaking(false); setError('Înregistrarea nu este disponibilă. Verifică fișierele audio.'); }}/>
     <div className="vocab-heading">
       <div className="eyebrow">DESCOPERIM CUVINTE</div>
       <h1>Atinge și ascultă!</h1>
-      <button type="button" className="vocab-intro-audio" onClick={() => play('instructiune')}>
-        🔊 Ascultă instrucțiunea
-      </button>
-      <p>Atinge o imagine. Ascultă cuvântul. Repetă.</p>
+
     </div>
     <section className="vocab-feature" aria-label="Părțile mărului">
       <div className="vocab-apple-picture">
@@ -116,8 +122,8 @@ export default function VocabMode({ sound, onHome, onListen, onPlay }) {
       </div>
       <div className="vocab-feedback" aria-live="polite">
         <span className="vocab-feedback-symbol" aria-hidden="true">✦</span>
-        <h2>{item ? item.text : 'Unde este codița?'}</h2>
-        <p>{item ? (['intrebare', 'altele', 'instructiune'].includes(chosen) ? 'Ascultă și descoperă!' : 'Privește imaginea și repetă.') : 'Atinge mărul, codița sau frunza.'}</p>
+        <h2>{item ? item.text : 'Descoperă mărul!'}</h2>
+        <p>{item ? (['intrebare', 'altele'].includes(chosen) ? 'Ascultă și descoperă!' : 'Privește imaginea și repetă.') : 'Măr · Codiță · Frunză'}</p>
         {chosen && <button type="button" className="vocab-repeat"
           onClick={() => play(chosen)}>↻ Mai ascultă o dată</button>}
         {error && <p className="vocab-audio-error" role="alert">{error}</p>}
