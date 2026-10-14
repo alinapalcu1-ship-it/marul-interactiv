@@ -19,11 +19,10 @@ export function pose(name, elapsed, reduce = false) {
 
 function Art({ name, elapsed, className = '', style = {}, greeting = false }) {
   const reduce = useReducedMotion();
-  if (name === 'heart') return <motion.svg className={'recital-art ' + className} viewBox="0 0 100 100" role="img" aria-label="Sănătate" style={{ ...pose(name, elapsed, reduce), ...style }}>
-    <path fill="#e6a49a" d="M50 87C39 77 8 58 8 33C8 8 39 4 50 25C61 4 92 8 92 33C92 58 61 77 50 87Z"/>
-    <path d="M31 47L45 61L71 34" fill="none" stroke="#fffdf5" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
-  </motion.svg>;
-  if (['apple', 'red', 'girl', 'boy'].includes(name)) return <CharacterSprite name={name === 'red' ? 'apple' : name} className={'recital-art ' + className} blend={greeting ? ease(elapsed / 1.1) : 0} style={{ ...pose(name, elapsed, reduce), ...style }}/>;
+  if (name === 'heart') return <motion.img className={'recital-art health-symbol ' + className}
+    src={imagePath('heart')} alt="Sănătate" draggable="false"
+    style={{ ...pose(name, elapsed, reduce), ...style }}/>;
+  if (['girl', 'boy'].includes(name)) return <CharacterSprite name={name === 'red' ? 'apple' : name} className={'recital-art ' + className} blend={greeting ? ease(elapsed / 1.1) : 0} style={{ ...pose(name, elapsed, reduce), ...style }}/>;
   return <motion.img className={'recital-art ' + className} src={imagePath(name)}
     alt={labels[name]} draggable="false" style={{ ...pose(name, elapsed, reduce), ...style }}/>;
 }
@@ -50,13 +49,13 @@ export default function SceneArtwork({ current, time, ended }) {
           }}/>}
         </div>;
       })}
-    </div> : <div className={'solo-art ' + (current === 4 ? 'stem-composition' : '')}
+    </div> : <div className={'solo-art ' + (current === 4 ? 'stem-scene' : '')}
       style={current === 4 ? { transform: 'scale(' + (reduce ? 1 : 1 + .06 * ease(elapsed / 1.8)) + ')' } : undefined}>
       <Art name={current === 2 ? 'ball' : current === 0 ? 'apple' : 'red'} elapsed={elapsed}
         style={current === 4 ? { rotate: 0 } : current === 5 && time >= tasteTime
           ? { scale: 1 + (reduce ? 0 : .035 * Math.sin((time - tasteTime) * Math.PI / 2)), rotate: 0 } : {}}/>
-      {current === 4 && <motion.span className="character-stem-highlight" aria-label="Codița cu frunză" role="img"
-        style={{ opacity: .45 + .2 * Math.sin(elapsed * Math.PI / 1.5) }}/>}
+      {current === 4 && <motion.span className="stem-focus" aria-label="Codița mărului" role="img"
+        style={{ opacity: .65 + .25 * Math.sin(elapsed * Math.PI / 1.5) }}/>}
       {current === 5 && <motion.img className="aroma" src={imagePath('scent')} alt="Parfum"
         style={{ opacity: .8 - .35 * ease((time - tasteTime) / .7), y: reduce ? '0%' : (-3 * Math.sin(elapsed * Math.PI / 2)) + '%' }}/>}
     </div>}
