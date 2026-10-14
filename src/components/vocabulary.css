@@ -1,0 +1,116 @@
+/* Picture + spoken word, designed for children aged 2–3.
+   Vocabulary has no background music: Antonia's voice stays clear. */
+.vocab-page {
+  --vocab-green: #6f9155;
+  min-width: 0;
+  padding: clamp(14px, 2.3vw, 38px) 0 clamp(22px, 3vw, 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 34px);
+}
+.vocab-heading { text-align: center; width: 100%; }
+.vocab-heading h1 { color: #375540; margin: 8px 0; font-size: clamp(30px, 4vw, 65px); }
+.vocab-heading p, .vocab-section > p {
+  color: #718068; margin: 4px 0 14px; font-size: clamp(16px, 1.7vw, 24px);
+}
+.vocab-feature {
+  width: min(100%, 1160px); display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(250px, .9fr);
+  gap: clamp(12px, 3vw, 40px); align-items: center;
+  background: #f3f2e6;
+  border: 2px solid #e3e8d3;
+  border-radius: clamp(24px, 3vw, 36px);
+  padding: clamp(14px, 2.5vw, 32px);
+}
+.vocab-apple-picture {
+  position: relative; isolation: isolate;
+  width: 100%; max-width: 510px; aspect-ratio: 1/1;
+  margin: 0 auto;
+  background: radial-gradient(ellipse at 50% 85%, #e6ecd4, transparent 64%);
+}
+.vocab-apple-picture > img {
+  width: 100%; height: 100%; object-fit: contain; pointer-events: none;
+  user-select: none; filter: drop-shadow(0 7px 8px #344c3c14);
+}
+.vocab-hotspot {
+  position: absolute; border: 0; background: none;
+  min-width: 64px; min-height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; touch-action: manipulation;
+}
+.vocab-stem-hotspot {
+  left: 42%; top: 3%; width: 37%; height: 25%;
+}
+.vocab-fruit-hotspot {
+  left: 20%; top: 34%; width: 60%; height: 40%;
+  align-items: end; padding-bottom: 4%;
+}
+.vocab-pin {
+  position: absolute; left: 17%; top: 22%;
+  font-size: clamp(24px, 3.2vw, 46px); color: #e7ab3b;
+  text-shadow: 0 0 6px #fff1b9; pointer-events: none;
+}
+.vocab-hotspot-label {
+  background: #fffef6ef; border: 2px solid #c9d9b0;
+  color: #38583f; border-radius: 999px;
+  padding: 8px 15px; font-weight: 900; white-space: nowrap;
+  box-shadow: 0 5px 16px #45664221;
+  font-size: clamp(16px, 2vw, 23px);
+}
+.vocab-stem-hotspot .vocab-hotspot-label { position: absolute; right: -3%; top: 0; }
+.vocab-hotspot-active .vocab-hotspot-label,
+.vocab-hotspot:focus-visible .vocab-hotspot-label { background: #e0edcb; border-color: #719653; }
+.vocab-feedback {
+  min-height: 190px; display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center; text-align: left; gap: 10px;
+}
+.vocab-feedback-symbol { font-size: clamp(28px, 4vw, 52px); color: #d8a744; }
+.vocab-feedback h2 { font-size: clamp(28px, 3.6vw, 54px); margin: 0; line-height: 1.16; }
+.vocab-feedback p { font-size: clamp(17px, 2vw, 26px); margin: 0; line-height: 1.35; }
+.vocab-repeat { border: 2px solid #b6c9a3; background: #eaf2df; border-radius: 24px;
+  padding: 13px 20px; min-height: 52px; font-weight: 800; font-size: 17px; }
+.vocab-audio-error { color: #a3402e; }
+.vocab-muted { color: #6b6a52; font-size: 15px!important; }
+.vocab-speaking { font-size: 14px; color: #68864e; }
+.vocab-section { width: min(100%, 1160px); text-align: center; }
+.vocab-section h2 { font-size: clamp(23px, 3vw, 40px); line-height: 1.2; margin: 0; }
+.vocab-word-grid { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(9px, 1.8vw, 24px); }
+.vocab-picture-word {
+  min-width: 0; min-height: 155px; padding: clamp(10px, 1.4vw, 20px);
+  border: 2px solid #e1e5d2; border-radius: 25px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  background: #fffdf6; box-shadow: 0 4px 0 #e2e7d3;
+}
+.vocab-picture-word img { width: 100%; height: clamp(105px, 14vw, 240px); object-fit: contain; pointer-events: none; transition: transform .2s ease; }
+.vocab-picture-word:active img { transform: scale(1.07); }
+.vocab-picture-label { font-size: clamp(18px, 2.3vw, 31px); font-weight: 900; color: #36523b; }
+.vocab-picture-label span { font-size: .8em; color: #7f9e5b; }
+.vocab-chosen { border-color: #749858; background: #eef5e1; box-shadow: 0 4px 0 #b7cea1; }
+.vocab-navigation { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 700px) {
+  .vocab-page { padding-top: 14px; gap: 22px; }
+  .vocab-feature { display: flex; flex-direction: column; gap: 10px; }
+  .vocab-apple-picture { width: min(87vw, 390px); }
+  .vocab-stem-hotspot { left: 41%; top: 1%; width: 42%; }
+  .vocab-fruit-hotspot { left: 17%; top: 33%; width: 66%; }
+  .vocab-hotspot-label { font-size: 17px; padding: 8px 12px; }
+  .vocab-feedback { min-height: 0; width: 100%; align-items: center; text-align: center; padding: 0 4px 10px; gap: 8px; }
+  .vocab-feedback-symbol { display: none; }
+  .vocab-feedback h2 { font-size: 29px; }
+  .vocab-feedback p { font-size: 18px; }
+  .vocab-word-grid { gap: 8px; }
+  .vocab-picture-word { min-height: 150px; border-radius: 20px; padding: 8px 3px; gap: 4px; }
+  .vocab-picture-word img { height: clamp(88px, 24vw, 150px); }
+  .vocab-picture-label { font-size: clamp(16px, 4.4vw, 22px); }
+  .vocab-navigation { width: 100%; }
+  .vocab-navigation .button { font-size: 16px; min-height: 52px; padding: 12px 16px; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .vocab-feature { grid-template-columns: minmax(0, 1fr) minmax(220px, 1fr); }
+  .vocab-apple-picture { max-width: min(66vh, 450px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vocab-picture-word img { transition: none; }
+  .vocab-picture-word:active img { transform: none; }
+}

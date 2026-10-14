@@ -2,7 +2,7 @@ import ObjectToy from './ObjectToy';
 import { useEffect, useRef, useState } from 'react';
 import './home-intro.css';
 
-export default function HomeScreen({ sound, onListen, onPlay }) {
+export default function HomeScreen({ sound, onListen, onPlay, onVocab }) {
   const introduction = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [error, setError] = useState('');
@@ -38,7 +38,7 @@ export default function HomeScreen({ sound, onListen, onPlay }) {
       <div className="friends"><ObjectToy wave={playing} name="girl" className="child"/><ObjectToy wave={playing} name="apple" auto className="main-apple"/><ObjectToy wave={playing} name="boy" className="child"/></div>
       <span className="flower flower-one" aria-hidden="true">✿</span><span className="flower flower-two" aria-hidden="true">✿</span>
     </div>
-    <div className="home-actions"><button className="button primary" onClick={() => leave(onListen)}><span>▶</span> Ascultă poezia</button><button className="button secondary" onClick={() => leave(onPlay)}><span>✦</span> Joacă-te</button></div>
+    <div className="home-actions"><button className="button primary" onClick={() => leave(onListen)}><span>▶</span> Ascultă poezia</button><button className="button secondary" onClick={() => leave(onPlay)}><span>✦</span> Joacă-te</button><button className="button light" onClick={() => leave(onVocab)}><span>♫</span> Atinge și ascultă</button></div>
     <button className="pill home-intro-button" disabled={!sound} aria-pressed={playing} onClick={playIntroduction}>
       🔊 Ascultă prezentarea
     </button>

@@ -13,7 +13,7 @@ const games = [
   { id: 'sorting', title: 'Surpriza merelor!', icon: '✦', hint: 'Joc surpriză · Culori și descoperiri', Component: SortingGame },
 ];
 
-export default function PlayMode({ sound, onListen, onHome }) {
+export default function PlayMode({ sound, onListen, onHome, onVocab }) {
   const [active, setActive] = useState(null);
   const [restart, setRestart] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(true);
@@ -35,7 +35,7 @@ export default function PlayMode({ sound, onListen, onHome }) {
       <div className="game-options">{games.map(game => <button className={'game-option option-' + game.id} key={game.id} onClick={() => { resumeMusic(); setActive(game); if (game.id === 'sorting') speak('instruction-sort-apples'); }}>
         <span className="game-option-icon" aria-hidden="true">{game.icon}</span><span><strong>{game.title}</strong><small>{game.hint}</small></span><span className="game-option-arrow" aria-hidden="true">→</span>
       </button>)}</div>
-      <div className="game-menu-footer"><button className="music-toggle" aria-pressed={musicEnabled} onClick={() => setMusicEnabled(value => !value)}>♫ Muzică {musicEnabled ? 'pornită' : 'oprită'}</button><button className="button light listen-link" onClick={() => leave(onListen)}>▶ Ascultă poezia</button></div>
+      <div className="game-menu-footer"><button className="music-toggle" aria-pressed={musicEnabled} onClick={() => setMusicEnabled(value => !value)}>♫ Muzică {musicEnabled ? 'pornită' : 'oprită'}</button><button className="button light listen-link" onClick={() => leave(onListen)}>▶ Ascultă poezia</button><button className="button light" onClick={() => leave(onVocab)}>♫ Atinge și ascultă</button></div>
     </>}
   </main>;
 }
