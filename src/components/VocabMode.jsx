@@ -1,151 +1,135 @@
 import { useEffect, useState } from 'react';
 import { imagePath } from '../data/scenes';
 import './vocabulary.css';
+import './vocabulary-pages.css';
 
-// Exactly the words spoken in the ten new Antonia recordings.
-// Audio files live in public/assets/vocabulary/ and are uploaded separately.
-const recordings = {
-  instructiune: { text: 'Atinge o imagine. Ascultă cuvântul. Repetă.', file: 'instructiune.mp3' },
-  mar: { text: 'Măr', file: 'mar.mp3', image: 'apple' },
-  codita: { text: 'Codiță', file: 'codita.mp3' },
-  frunza: { text: 'Frunza', file: 'frunza.mp3' },
-  rosu: { text: 'Măr roșu', file: 'mar-rosu.mp3', image: 'red' },
-  verde: { text: 'Măr verde', file: 'mar-verde.mp3', image: 'green' },
-  galben: { text: 'Măr galben', file: 'mar-galben.mp3', image: 'yellow' },
-  minge: { text: 'Minge', file: 'minge.mp3', image: 'ball' },
-  intrebare: { text: 'Ce culoare are mărul?', file: 'intrebare-culoare.mp3' },
-  altele: { text: 'Alte cuvinte din poezie.', file: 'alte-cuvinte.mp3' },
+const words = {
+  mar: ['Măr', 'mar.mp3'],
+  codita: ['Codiță', 'codita.mp3'],
+  frunza: ['Frunza', 'frunza.mp3'],
+  rosu: ['Măr roșu', 'mar-rosu.mp3'],
+  verde: ['Măr verde', 'mar-verde.mp3'],
+  galben: ['Măr galben', 'mar-galben.mp3'],
+  minge: ['Minge', 'minge.mp3'],
+  intrebare: ['Ce culoare are mărul?', 'intrebare-culoare.mp3'],
+  altele: ['Alte cuvinte din poezie', 'alte-cuvinte.mp3'],
 };
-const recordingUrl = name => import.meta.env.BASE_URL + 'assets/vocabulary/' + recordings[name].file;
-
-function WordPicture({ word, active, play }) {
-  const item = recordings[word];
-  return <button className={'vocab-picture-word' + (active ? ' vocab-chosen' : '')}
-    type="button" onClick={() => play(word)}
-    aria-label={'Ascultă: ' + item.text} aria-pressed={active}>
-    <img src={imagePath(item.image)} alt="" draggable="false"/>
-    <span className="vocab-picture-label">{item.text} <span aria-hidden="true">♪</span></span>
-  </button>;
-}
-
-function SpokenHeading({ id, title, recording, play }) {
-  return <div className="vocab-heading-row">
-    <h2 id={id}>{title}</h2>
-    <button className="vocab-heading-audio" type="button" onClick={() => play(recording)}
-      aria-label={'Ascultă: ' + recordings[recording].text}>🔊 <span>Ascultă</span></button>
-  </div>;
-}
+const colors = ['rosu', 'verde', 'galben'];
+const pictures = ['red', 'green', 'yellow'];
+const titles = ['Părțile mărului', 'Ce culoare are mărul?', 'Alte cuvinte din poezie'];
 
 export default function VocabMode({ audio, sound, onHome, onListen, onPlay }) {
-  const [chosen, setChosen] = useState(null);
+  const [section, setSection] = useState(0);
+  const [colorIndex, setColorIndex] = useState(0);
+  const [chosen, setChosen] = useState('');
   const [error, setError] = useState('');
   const [speaking, setSpeaking] = useState(false);
-  const item = chosen && recordings[chosen];
 
   useEffect(() => {
     const track = audio.current;
-    const syncPlayback = () => setSpeaking(!track.paused && !track.ended);
-    const playbackError = () => {
-      setSpeaking(false);
-      setError('Înregistrarea nu este disponibilă. Verifică fișierele audio.');
-    };
-    const onHidden = () => { if (document.hidden) track.pause(); };
-    track.addEventListener('play', syncPlayback);
-    track.addEventListener('pause', syncPlayback);
-    track.addEventListener('ended', syncPlayback);
-    track.addEventListener('error', playbackError);
-    document.addEventListener('visibilitychange', onHidden);
-    syncPlayback(); // The welcome recording was started in the navigation tap.
+    const sync = () => setSpeaking(!track.paused && !track.ended);
+    const hidden = () => { if (document.hidden) track.pause(); };
+    track.addEventListener('play', sync);
+    track.addEventListener('pause', sync);
+    track.addEventListener('ended', sync);
+    document.addEventListener('visibilitychange', hidden);
+    sync();
     return () => {
-      document.removeEventListener('visibilitychange', onHidden);
-      track.removeEventListener('play', syncPlayback);
-      track.removeEventListener('pause', syncPlayback);
-      track.removeEventListener('ended', syncPlayback);
-      track.removeEventListener('error', playbackError);
+      document.removeEventListener('visibilitychange', hidden);
+      track.removeEventListener('play', sync);
+      track.removeEventListener('pause', sync);
+      track.removeEventListener('ended', sync);
       track.pause();
-      track.currentTime = 0;
     };
   }, [audio]);
-
   useEffect(() => {
-    if (!sound && audio.current) { audio.current.pause(); setSpeaking(false); }
-  }, [sound]);
+    if (!sound) audio.current?.pause();
+  }, [sound, audio]);
 
-  function play(name) {
-    if (!recordings[name]) return;
-    setChosen(name);
-    setError('');
+  function say(name) {
+    if (!words[name]) return;
+    setChosen(name); setError('');
     const track = audio.current;
     track.pause();
     track.currentTime = 0;
-    if (!sound) { setSpeaking(false); return; }
-    track.src = recordingUrl(name);
-    // A real child tap starts playback, including on Safari iOS.
-    const promise = track.play();
-    if (promise && typeof promise.then === 'function') {
-      promise.then(() => setSpeaking(true)).catch(failure => {
-        if (failure.name !== 'AbortError') setError('Înregistrarea nu este disponibilă. Verifică fișierele audio.');
-        setSpeaking(false);
-      });
-    }
+    if (!sound) return;
+    track.src = import.meta.env.BASE_URL + 'assets/vocabulary/' + words[name][1];
+    track.play().catch(err => {
+      if (err.name !== 'AbortError') setError('Sunetul nu a pornit. Atinge din nou imaginea.');
+    });
   }
-  function navigate(action) {
-    audio.current?.pause();
+  function goSection(next) {
+    setSection(next);
+    setColorIndex(0);
+    setChosen('');
+    if (next === 1) say('intrebare');
+    else if (next === 2) say('altele');
+    else say('mar');
+  }
+  function goColor(index) {
+    setColorIndex(index);
+    say(colors[index]);
+  }
+  function leave(action) {
+    audio.current.pause();
     action();
   }
 
-  return <main className="vocab-page">
-    <div className="vocab-heading">
-      <div className="eyebrow">DESCOPERIM CUVINTE</div>
-      <h1>Atinge și ascultă!</h1>
-
+  return <main className="vocab-page vocab-paged">
+    <div className="vocab-paged-heading">
+      <div className="eyebrow">ATINGE ȘI ASCULTĂ · {section + 1}/3</div>
+      <h1>{titles[section]}</h1>
+      {section !== 0 && <button type="button" className="vocab-heading-sound"
+        onClick={() => say(section === 1 ? 'intrebare' : 'altele')}>
+        <span aria-hidden="true">🔊</span> Reascultă
+      </button>}
     </div>
-    <section className="vocab-feature" aria-label="Părțile mărului">
-      <div className="vocab-apple-picture">
-        <img src={imagePath('apple')} alt="Măr roșu cu codiță și frunză" draggable="false"/>
-        <button type="button" className={'vocab-hotspot vocab-stem-hotspot' + (chosen === 'codita' ? ' vocab-hotspot-active' : '')}
-          onClick={() => play('codita')} aria-label="Ascultă: Codiță"
-          aria-pressed={chosen === 'codita'}>
-          <span className="vocab-pin" aria-hidden="true">✦</span>
-          <span className="vocab-hotspot-label">Codița ♪</span>
+    <section className="vocab-paged-stage" aria-label={titles[section]}>
+      {section === 0 ? <div className="vocab-focus-apple">
+        <img src={imagePath('apple')} alt="Mărul roșu cu codiță și frunză" draggable="false"/>
+        <button className="vocab-tap-area vocab-tap-stem" type="button" onClick={() => say('codita')}
+          aria-label="Ascultă: Codiță"><span>Codița ♪</span></button>
+        <button className="vocab-tap-area vocab-tap-leaf" type="button" onClick={() => say('frunza')}
+          aria-label="Ascultă: Frunza"><span>Frunza ♪</span></button>
+        <button className="vocab-tap-area vocab-tap-fruit" type="button" onClick={() => say('mar')}
+          aria-label="Ascultă: Măr"><span>Mărul ♪</span></button>
+      </div> : section === 1 ? <div className="vocab-focus-color">
+        <button className="vocab-color-arrow" type="button" disabled={colorIndex === 0}
+          onClick={() => goColor(colorIndex - 1)} aria-label="Culoarea anterioară">‹</button>
+        <button className="vocab-big-picture" type="button" onClick={() => say(colors[colorIndex])}
+          aria-label={'Ascultă: ' + words[colors[colorIndex]][0]}>
+          <img src={imagePath(pictures[colorIndex])} alt={words[colors[colorIndex]][0]} draggable="false"/>
+          <span>{words[colors[colorIndex]][0]} ♪</span>
         </button>
-        <button type="button" className={'vocab-hotspot vocab-leaf-hotspot' + (chosen === 'frunza' ? ' vocab-hotspot-active' : '')}
-          onClick={() => play('frunza')} aria-label="Ascultă: Frunza"
-          aria-pressed={chosen === 'frunza'}>
-          <span className="vocab-hotspot-label">Frunza ♪</span>
+        <button className="vocab-color-arrow" type="button" disabled={colorIndex === 2}
+          onClick={() => goColor(colorIndex + 1)} aria-label="Culoarea următoare">›</button>
+        <div className="vocab-color-dots" aria-label={'Culoarea ' + (colorIndex + 1) + ' din 3'}>
+          {colors.map((color, index) => <button key={color} type="button" onClick={() => goColor(index)}
+            aria-label={words[color][0]} aria-current={colorIndex === index ? 'step' : undefined}
+            className={index === colorIndex ? 'active' : ''}/>)}
+        </div>
+      </div> : <button className="vocab-focus-ball" type="button" onClick={() => say('minge')}
+        aria-label="Ascultă: Minge">
+        <img src={imagePath('ball')} alt="Minge colorată" draggable="false"/>
+        <span>Minge ♪</span>
+      </button>}
+    </section>
+    <div className="vocab-paged-bottom">
+      <div className="vocab-status" aria-live="polite">
+        <span>{chosen && words[chosen] ? words[chosen][0] : section === 0 ? 'Atinge mărul, codița sau frunza' : 'Atinge imaginea și ascultă'}</span>
+        {speaking && <span className="vocab-sound-wave" aria-label="Se redă înregistrarea">♫</span>}
+        {error && <p role="alert">{error}</p>}
+        {!sound && <p>Activează sunetul din partea de sus.</p>}
+      </div>
+      <nav className="vocab-step-navigation" aria-label="Secțiunile vocabularului">
+        <button type="button" className="vocab-nav-secondary" onClick={() => section === 0 ? leave(onHome) : goSection(section - 1)}>
+          ‹ {section === 0 ? 'Acasă' : 'Înapoi'}
         </button>
-        <button type="button" className={'vocab-hotspot vocab-fruit-hotspot' + (chosen === 'mar' ? ' vocab-hotspot-active' : '')}
-          onClick={() => play('mar')} aria-label="Ascultă: Măr"
-          aria-pressed={chosen === 'mar'}>
-          <span className="vocab-hotspot-label">Mărul ♪</span>
+        <span className="vocab-step-count">{section + 1} / 3</span>
+        <button type="button" className="vocab-nav-primary" onClick={() => goSection(section === 2 ? 0 : section + 1)}>
+          {section === 2 ? 'De la început' : 'Mai departe'} ›
         </button>
-      </div>
-      <div className="vocab-feedback" aria-live="polite">
-        <span className="vocab-feedback-symbol" aria-hidden="true">✦</span>
-        <h2>{item ? item.text : 'Descoperă mărul!'}</h2>
-        <p>{item ? (['intrebare', 'altele'].includes(chosen) ? 'Ascultă și descoperă!' : 'Privește imaginea și repetă.') : 'Măr · Codiță · Frunză'}</p>
-        {chosen && <button type="button" className="vocab-repeat"
-          onClick={() => play(chosen)}>↻ Mai ascultă o dată</button>}
-        {error && <p className="vocab-audio-error" role="alert">{error}</p>}
-        {!sound && <p className="vocab-muted">Pornește sunetul din partea de sus.</p>}
-        {speaking && <span className="vocab-speaking" aria-hidden="true">♪ Se aude vocea Antoniei</span>}
-      </div>
-    </section>
-    <section className="vocab-section" aria-labelledby="vocab-colors">
-      <SpokenHeading id="vocab-colors" title="Ce culoare are mărul?" recording="intrebare" play={play}/>
-      <div className="vocab-word-grid vocab-three-colors">{['rosu', 'verde', 'galben'].map(word =>
-        <WordPicture key={word} word={word} active={chosen === word} play={play}/>)}</div>
-    </section>
-    <section className="vocab-section" aria-labelledby="vocab-others">
-      <SpokenHeading id="vocab-others" title="Alte cuvinte din poezie" recording="altele" play={play}/>
-      <div className="vocab-word-grid vocab-one-word">
-        <WordPicture word="minge" active={chosen === 'minge'} play={play}/>
-      </div>
-    </section>
-    <nav className="vocab-navigation" aria-label="Navigare">
-      <button type="button" className="button light" onClick={() => navigate(onHome)}>⌂ Acasă</button>
-      <button type="button" className="button primary" onClick={() => navigate(onListen)}>▶ Ascultă poezia</button>
-      <button type="button" className="button secondary" onClick={() => navigate(onPlay)}>✦ Joacă-te</button>
-    </nav>
+      </nav>
+    </div>
   </main>;
 }

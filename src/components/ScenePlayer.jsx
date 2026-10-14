@@ -53,7 +53,7 @@ export default function ScenePlayer({ audio, notice, setNotice, onHome, onPlay }
   return <main className="listen">
     <div className="verse-heading">
       <h1 className="verse">{ended ? 'Bravo!' : current < 0 ? 'Mărul' : scenes[current].text}</h1>
-      {current >= 0 && <span className="scene-count" aria-label={'Scena ' + (current + 1) + ' din 7'}>{current + 1}/7</span>}
+      {current >= 0 && <span className="scene-count" aria-label={'Scena ' + (current + 1) + ' din ' + scenes.length}>{current + 1}/{scenes.length}</span>}
     </div>
     <SceneArtwork current={current} time={time} ended={ended}/>
     <div className="player-bottom">

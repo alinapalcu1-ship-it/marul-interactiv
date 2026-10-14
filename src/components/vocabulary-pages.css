@@ -1,0 +1,129 @@
+/* One large, touchable subject per screen; mobile-first and tablet-friendly. */
+.screen-vocab { height: 100dvh; min-height: 0; overflow: hidden; }
+.screen-vocab footer, .screen-vocab .notice:empty { display: none; }
+.screen-vocab .vocab-paged {
+  flex: 1 1 auto; min-height: 0; overflow: hidden;
+  width: 100%; padding: clamp(7px, 1.2vh, 18px) 0 max(8px, env(safe-area-inset-bottom));
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(3px, 1vh, 13px); justify-items: center;
+}
+.vocab-paged-heading { text-align: center; width: 100%; }
+.vocab-paged-heading h1 {
+  color: #3d6245; font-family: var(--font-display);
+  font-size: clamp(25px, 4vw, 56px); font-weight: 650;
+  line-height: 1.1; margin: 4px 0 0; letter-spacing: -.025em;
+}
+.vocab-paged-heading .eyebrow { font-size: clamp(10px, 1vw, 15px); }
+.vocab-heading-sound {
+  border: 1px solid #c7d7b2; background: #f0f5e8; min-height: 40px;
+  border-radius: 999px; padding: 6px 17px; font-weight: 800;
+  font-size: clamp(13px, 1.3vw, 18px); margin: 9px 0 0;
+}
+.vocab-paged-stage {
+  min-width: 0; min-height: 0; width: 100%; height: 100%;
+  container-type: size; display: grid; place-items: center;
+  background: radial-gradient(ellipse at 50% 85%, #e9f1df 0%, #fdfcf6 62%, transparent 80%);
+  border: 1px solid #edf0e3; border-radius: 26px;
+  overflow: hidden;
+}
+.vocab-focus-apple {
+  width: min(92cqw, 90cqh); height: min(92cqw, 90cqh);
+  position: relative; isolation: isolate;
+}
+.vocab-focus-apple > img { width: 100%; height: 100%; pointer-events: none; object-fit: contain; }
+.vocab-tap-area {
+  position: absolute; min-width: 50px; min-height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; background: transparent; border: none; z-index: 2;
+  touch-action: manipulation;
+}
+.vocab-tap-area span {
+  padding: 8px 13px; border-radius: 999px;
+  border: 2px solid #bacfa1; background: #fffcf5ef;
+  font-family: var(--font-display); font-size: clamp(15px, 2vw, 22px);
+  font-weight: 600; color: #416341; white-space: nowrap;
+  box-shadow: 0 5px 15px #263f2c22;
+}
+.vocab-tap-stem { left: 26%; top: 0%; width: 36%; height: 26%; align-items: start; justify-content: start; }
+.vocab-tap-leaf { left: 64%; top: 0%; width: 34%; height: 27%; align-items: start; }
+.vocab-tap-fruit { left: 19%; top: 33%; width: 62%; height: 48%; align-items: end; padding-bottom: 3%; }
+.vocab-tap-area:focus-visible { outline: 3px solid #587c42; border-radius: 18px; }
+.vocab-focus-color { width: 100%; height: 100%; display: grid; place-items: center; position: relative; }
+.vocab-big-picture, .vocab-focus-ball {
+  background: none; border: 0; padding: 0;
+  width: min(90cqw, 84cqh); height: min(90cqw, 84cqh);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; touch-action: manipulation;
+}
+.vocab-big-picture img, .vocab-focus-ball img {
+  width: 100%; min-height: 0; flex: 1; height: 80%; object-fit: contain;
+  filter: drop-shadow(0 7px 7px #304b3910);
+}
+.vocab-big-picture span, .vocab-focus-ball span {
+  font-family: var(--font-display); color: #3e6247;
+  font-size: clamp(22px, 3.5vw, 40px); font-weight: 600; margin-top: 1px;
+}
+.vocab-focus-ball { width: min(89cqw, 88cqh); height: min(89cqw, 88cqh); }
+.vocab-color-arrow {
+  position: absolute; top: 48%; transform: translateY(-50%); z-index: 3;
+  width: clamp(47px, 6vw, 68px); height: clamp(52px, 7vw, 72px);
+  border: 2px solid #d4dfc2; border-radius: 22px;
+  background: #fffdf6eb; font-size: clamp(32px, 3vw, 44px);
+  font-family: var(--font-display); color: #4e704b; line-height: 1;
+}
+.vocab-color-arrow:first-child { left: 1%; }
+.vocab-color-arrow:nth-child(3) { right: 1%; }
+.vocab-color-arrow:disabled { opacity: .26; cursor: default; }
+.vocab-color-dots {
+  display: flex; gap: 16px; align-items: center; justify-content: center;
+  position: absolute; bottom: 4px; left: 0; right: 0;
+}
+.vocab-color-dots button {
+  width: 22px; height: 22px; padding: 0; border-radius: 50%;
+  border: 2px solid #c3d0b2; background: #dbe4ca;
+}
+.vocab-color-dots button.active { background: #718e58; border-color: #59764d; }
+.vocab-paged-bottom { width: min(100%, 900px); display: grid; gap: 6px; }
+.vocab-status {
+  min-height: 26px; display: flex; align-items: center;
+  justify-content: center; flex-wrap: wrap; gap: 9px;
+  font-size: clamp(14px, 1.6vw, 20px); color: #5d7558; font-weight: 800;
+}
+.vocab-status p { width: 100%; margin: 0; font-size: 13px; }
+.vocab-sound-wave { color: #7c9a5f; }
+.vocab-step-navigation { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.vocab-step-navigation button {
+  border: 0; border-radius: 18px; min-height: 54px;
+  padding: 11px clamp(14px, 2vw, 25px); font-size: clamp(15px, 1.7vw, 20px);
+  font-weight: 850; box-shadow: 0 3px 0 #cfdabe; flex: 0 1 auto;
+}
+.vocab-nav-secondary { background: #ebf0e2; }
+.vocab-nav-primary { background: #7a985f; color: #fff; }
+.vocab-step-count { font-family: var(--font-display); color: #607953; font-size: 19px; white-space: nowrap; }
+@media (max-width: 600px) {
+  .screen-vocab { padding-left: max(8px, env(safe-area-inset-left)); padding-right: max(8px, env(safe-area-inset-right)); }
+  .screen-vocab header { padding-top: max(6px, env(safe-area-inset-top)); padding-bottom: 6px; }
+  .screen-vocab .brand span { display: none; }
+  .vocab-paged-heading h1 { font-size: clamp(26px, 7.7vw, 35px); }
+  .vocab-paged-heading .eyebrow { font-size: 10px; }
+  .vocab-heading-sound { min-height: 37px; margin: 5px 0 0; }
+  .vocab-paged-stage { border-radius: 18px; }
+  .vocab-tap-area span { padding: 7px 10px; font-size: clamp(13px, 3.8vw, 17px); }
+  .vocab-tap-stem { left: 20%; width: 42%; }
+  .vocab-tap-leaf { left: 62%; width: 38%; }
+  .vocab-color-arrow { width: 42px; height: 55px; }
+  .vocab-status { font-size: 14px; }
+  .vocab-step-navigation button { min-height: 50px; font-size: 15px; padding: 9px 12px; }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .vocab-paged-heading h1 { font-size: 25px; }
+  .vocab-paged-heading .eyebrow { display: none; }
+  .vocab-heading-sound { margin-top: 2px; min-height: 35px; }
+  .vocab-paged-bottom { gap: 2px; }
+  .vocab-status { min-height: 18px; }
+  .vocab-step-navigation button { min-height: 43px; padding: 6px 18px; }
+  .vocab-paged-stage { border-radius: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vocab-big-picture img { transition: none; }
+}
