@@ -267,61 +267,145 @@
 }
 
 
-/* Puzzle — much larger assembled character art on a phone.
-   Use full-resolution images and keep the original 2- or 3-piece cropping.
-   On very short screens, scroll the puzzle workspace rather than shrinking
-   both the completed image and the loose pieces until they are unreadable. */
+/* Puzzle on phone: board AND loose-piece tray remain visible together.
+   Both use the actual available game height rather than fixed pixel squares.
+   The 3-piece puzzle still consists of horizontal strips. */
 @media (orientation: portrait) and (max-width: 900px) {
-  .game-puzzle-active .game-activity { gap: 4px; }
-  .game-puzzle-active .game-title { font-size: clamp(22px, 5.5vw, 28px); margin: 1px 0; }
-  .game-puzzle-active .puzzle-options { gap: clamp(6px, 2vw, 14px); }
-  .game-puzzle-active .puzzle-area {
-    flex-direction: column;
+  .screen-play .game-puzzle-active {
+    overflow: hidden;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 3px;
+  }
+  .game-puzzle-active .game-activity {
+    min-height: 0;
+    overflow: hidden;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 4px;
+  }
+  .game-puzzle-active .game-title {
+    font-size: clamp(22px, 5.5vw, 28px);
+    margin: 1px 0;
+  }
+  .game-puzzle-active .puzzle-options {
+    gap: clamp(5px, 2vw, 12px);
+    min-height: 0;
     flex-wrap: nowrap;
+  }
+  .game-puzzle-active .puzzle-area {
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 53% 42%;
+    justify-items: center;
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    scrollbar-width: thin;
-    scroll-behavior: smooth;
-    scroll-padding: 10px;
-    padding: 7px 0 14px;
-    touch-action: pan-y;
+    align-content: center;
+    gap: min(1cqh, 6px);
+    padding: 0;
+    overflow: hidden;
+    touch-action: manipulation;
   }
   .game-puzzle-active .puzzle-board {
-    width: min(92cqw, 370px);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: min(92cqw, 53cqh);
+    height: min(92cqw, 53cqh);
+    aspect-ratio: 1;
+    flex: none;
     max-width: 100%;
-    border-radius: 19px;
+    min-height: 0;
+    border-radius: 16px;
   }
   .game-puzzle-active .puzzle-tray {
-    width: min(86cqw, 345px);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: min(88cqw, 42cqh);
+    height: min(88cqw, 42cqh);
+    aspect-ratio: 1;
+    flex: none;
     max-width: 100%;
-    gap: 8px;
+    min-height: 0;
+    gap: 6px;
+  }
+  .game-puzzle-active .puzzle-horizontal .puzzle-tray {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .game-puzzle-active .puzzle-horizontal .puzzle-board {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+  }
+  .game-puzzle-active .piece-space {
+    min-width: 0; min-height: 0;
+    overflow: visible;
   }
   .game-puzzle-active .puzzle-piece {
-    border-radius: 12px;
-    box-shadow: 0 0 0 2px #cbd9b9, 0 5px 12px #59724c26;
+    width: 100%; height: 100%;
+    min-width: 0; min-height: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px #cbd9b9, 0 3px 8px #59724c26;
   }
   .game-puzzle-active .puzzle-slot { border-width: 2px; }
   .game-puzzle-active .puzzle-guide { opacity: .24; }
-  .game-puzzle-active .game-feedback { min-height: 38px; line-height: 1.15; }
+  .game-puzzle-active .game-feedback {
+    min-height: 43px;
+    gap: 7px;
+    font-size: clamp(12px, 3.4vw, 15px);
+    line-height: 1.15;
+  }
+  .game-puzzle-active .game-feedback .button {
+    min-height: 43px;
+    padding: 6px 11px;
+    font-size: clamp(12px, 3.4vw, 15px);
+    white-space: nowrap;
+  }
+  .game-puzzle-active .game-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 2px 0;
+  }
+  .game-puzzle-active .game-navigation .button {
+    min-width: 0;
+    width: 100%;
+    min-height: 46px;
+    font-size: clamp(12px, 3.35vw, 16px);
+    padding: 7px 3px;
+    white-space: nowrap;
+  }
 }
-/* Keep both panels large and alongside each other in landscape. */
+/* Even on short portrait phones, don't move the tray below the viewport. */
+@media (orientation: portrait) and (max-height: 680px) {
+  .screen-play.game-puzzle-active header { padding-top: 4px; padding-bottom: 4px; }
+  .game-puzzle-active .game-title { font-size: 21px; margin: 0; }
+  .game-puzzle-active .puzzle-options .game-levels button {
+    min-height: 42px; padding: 4px 8px; font-size: 12px;
+  }
+  .game-puzzle-active .puzzle-characters button {
+    width: 46px; height: 46px; padding: 2px;
+  }
+  .game-puzzle-active .game-feedback { min-height: 36px; }
+  .game-puzzle-active .game-feedback .button { min-height: 39px; }
+  .game-puzzle-active .game-navigation .button { min-height: 42px; }
+}
+/* Landscape: both square panels stay beside each other. */
 @media (orientation: landscape) and (max-height: 600px) {
-  .game-puzzle-active .puzzle-area { flex-direction: row; justify-content: center; overflow: hidden; gap: 3%; }
+  .game-puzzle-active .puzzle-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    gap: 3%;
+    padding: 0;
+    touch-action: manipulation;
+  }
   .game-puzzle-active .puzzle-board,
   .game-puzzle-active .puzzle-tray {
     width: min(45cqw, 91cqh);
     height: min(45cqw, 91cqh);
+    aspect-ratio: 1;
     flex: 0 0 auto;
-    aspect-ratio: 1 / 1;
   }
 }
