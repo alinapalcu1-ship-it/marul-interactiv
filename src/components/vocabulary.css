@@ -154,7 +154,7 @@
 .vocab-stem-hotspot .vocab-hotspot-label {
   right: auto; left: 0; top: 2%;
 }
-.vocab-two-colors { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 790px; margin: 0 auto; }
+.vocab-three-colors { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 1050px; margin: 0 auto; }
 .vocab-one-word { grid-template-columns: minmax(0, 1fr); max-width: 380px; margin: 0 auto; }
 @media (max-width: 700px) {
   .vocab-heading-row { flex-direction: column; gap: 8px; margin-bottom: 12px; }
@@ -165,7 +165,7 @@
     padding: 7px 9px;
     font-size: 15px;
   }
-  .vocab-two-colors { max-width: 100%; }
-  .vocab-two-colors .vocab-picture-word img { height: clamp(100px, 36vw, 165px); }
+  .vocab-three-colors { max-width: 100%; }
+  .vocab-three-colors .vocab-picture-word img { height: clamp(90px, 26vw, 160px); }
   .vocab-one-word { max-width: min(72vw, 300px); }
 }
