@@ -1,4 +1,4 @@
-import { createVolumeFader } from './volume-fader';
+import { createVolumeFader } from './volume-fader.js';
 
 // iOS Safari ignores changes to HTMLMediaElement.volume. Route the music through
 // Web Audio's GainNode once the child taps a game, keeping the narration separate.
