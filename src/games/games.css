@@ -409,3 +409,35 @@
     flex: 0 0 auto;
   }
 }
+
+
+/* Measured phone layout, based on the ACTUAL space between game controls.
+   Unlike viewport-only CSS units, this also works when browser bars are visible. */
+@media (orientation: portrait) and (max-width: 900px) {
+  .game-puzzle-active .puzzle-area {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:
+      var(--puzzle-board-size, min(90cqw, 49cqh))
+      var(--puzzle-tray-size, min(86cqw, 39cqh));
+    gap: var(--puzzle-gap, 6px);
+    align-content: center;
+    justify-content: center;
+  }
+  .game-puzzle-active .puzzle-board {
+    width: var(--puzzle-board-size, min(90cqw, 49cqh));
+    height: var(--puzzle-board-size, min(90cqw, 49cqh));
+  }
+  .game-puzzle-active .puzzle-tray {
+    width: var(--puzzle-tray-size, min(86cqw, 39cqh));
+    height: var(--puzzle-tray-size, min(86cqw, 39cqh));
+  }
+  /* Shorter phones: show both panels alongside one another rather than
+     letting the loose pieces disappear outside the viewport. */
+  .game-puzzle-active .puzzle-area.puzzle-side-by-side {
+    grid-template-columns: var(--puzzle-board-size) var(--puzzle-tray-size);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: center;
+    justify-content: center;
+    gap: var(--puzzle-gap, 6px);
+  }
+}

@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { imagePath } from '../data/scenes';
 import { characters, closeToSlot, names, shuffle, sliceBackgroundStyle } from './logic';
 import { Character, Levels } from './Shared';
+import { measurePuzzlePanels } from './puzzleLayout';
 
 export default function PuzzleGame({ reward }) {
   const [character, setCharacter] = useState('apple');
@@ -12,10 +13,38 @@ export default function PuzzleGame({ reward }) {
   const [order, setOrder] = useState([1, 0]);
   const [hint, setHint] = useState('Atinge o piesă, apoi locul ei!');
   const slots = useRef([]);
+  const areaRef = useRef(null);
+  const [mobileLayout, setMobileLayout] = useState(null);
   const dragged = useRef(false);
   const reduce = useReducedMotion();
   const count = level + 1;
   const complete = placed.length === count;
+  // Browser address bars change the real space available on a phone.
+  useLayoutEffect(() => {
+    const area = areaRef.current;
+    if (!area) return;
+    const update = () => {
+      const mobile = window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches;
+      if (!mobile) {
+        setMobileLayout(previous => previous === null ? previous : null);
+        return;
+      }
+      const size = area.getBoundingClientRect();
+      const next = measurePuzzlePanels(size.width, size.height);
+      if (!next) return;
+      setMobileLayout(previous =>
+        previous?.board === next.board && previous?.tray === next.tray &&
+        previous?.sideBySide === next.sideBySide ? previous : next
+      );
+    };
+    const observer = typeof ResizeObserver !== 'undefined'
+      ? new ResizeObserver(update) : null;
+    observer?.observe(area);
+    window.addEventListener('resize', update);
+    update();
+    return () => { observer?.disconnect(); window.removeEventListener('resize', update); };
+  }, []);
+
   function reset(name = character, value = level) {
     setCharacter(name); setLevel(value); setPlaced([]); setSelected(null);
     setOrder(shuffle(Array.from({ length: value + 1 }, (_, i) => i)));
@@ -33,7 +62,16 @@ export default function PuzzleGame({ reward }) {
       <div className="puzzle-characters" aria-label="Alege personajul">{characters.map(name =>
         <button key={name} aria-label={`Puzzle: ${names[name]}`} aria-pressed={character === name} onClick={() => reset(name)}><Character name={name}/></button>)}</div>
     </div>
-    <div className={'puzzle-area ' + (count === 3 ? 'puzzle-horizontal' : '')} style={{ '--pieces': count }}>
+    <div ref={areaRef}
+      className={'puzzle-area ' + (count === 3 ? 'puzzle-horizontal' : '') +
+        (mobileLayout?.sideBySide ? ' puzzle-side-by-side' : '')}
+      style={{ '--pieces': count,
+        ...(mobileLayout ? {
+          '--puzzle-board-size': mobileLayout.board + 'px',
+          '--puzzle-tray-size': mobileLayout.tray + 'px',
+          '--puzzle-gap': mobileLayout.gap + 'px'
+        } : {})
+      }}>
       <div className="puzzle-board" aria-label="Imaginea de completat">
         <img className="puzzle-guide" src={imagePath(character)} alt=""/>
         {complete ? <div className="completed-puzzle"><Character name={character} celebrate/></div>
