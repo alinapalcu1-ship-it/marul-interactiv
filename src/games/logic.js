@@ -30,7 +30,20 @@ export function matchingCards(deck, first, second) {
   return first !== second && deck[first]?.name === deck[second]?.name;
 }
 
-// Vertical slices cover the original square exactly, without gaps or stretching.
+// Draw the complete image as an aligned background, cropping one true slice per tile.
+// Two pieces remain side-by-side; three pieces use large HORIZONTAL strips.
+export function sliceBackgroundStyle(piece, count, url) {
+  const horizontal = count === 3;
+  const position = count === 1 ? 0 : (piece / (count - 1)) * 100;
+  return {
+    backgroundImage: `url("${url}")`,
+    backgroundSize: horizontal ? `100% ${count * 100}%` : `${count * 100}% 100%`,
+    backgroundPosition: horizontal ? `center ${position}%` : `${position}% center`,
+    backgroundRepeat: 'no-repeat',
+  };
+}
+
+// Legacy helper retained for code depending on the two-piece puzzle.
 export function sliceStyle(piece, count) {
   return { width: `${count * 100}%`, left: `${-piece * 100}%` };
 }
