@@ -441,3 +441,46 @@
     gap: var(--puzzle-gap, 6px);
   }
 }
+
+
+/* SMART BOARD / DESKTOP: display every apple ABOVE the opaque basket front.
+   Preserve the existing mobile presentation (<= 900px). On large displays,
+   two full rows fit safely inside the open top: 4 red (2+2), 3 yellow (2+1). */
+@media (min-width: 901px) {
+  .sorting-area .basket-apples,
+  .sorting-area.all-sorted .basket-apples {
+    top: 16%;
+    bottom: 37%;
+    left: 12%;
+    right: 12%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+    align-items: center;
+    justify-items: center;
+    gap: 0 2%;
+    z-index: 3;
+    overflow: visible;
+  }
+  .sorting-area .basket-apples img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: none;
+    object-fit: contain;
+  }
+  .sorting-area .basket-yellow .basket-apples img:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+  }
+  /* Show only the actual lower rim in front of the fruit.
+     The old 61% clipping covered much of the second fruit row. */
+  .sorting-area .basket-rim {
+    z-index: 4;
+    clip-path: inset(73% 0 0 0);
+  }
+}
