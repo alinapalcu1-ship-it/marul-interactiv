@@ -540,7 +540,7 @@
    over the second row. This compact fruit cluster is deliberately visible
    inside the basket mouth, in FRONT of the basket image. Do not affect phones
    in portrait, where the previous arrangement is already correct. */
-@media (min-width: 901px), (orientation: landscape) and (min-width: 600px) and (min-height: 440px) {
+@media (min-width: 901px), (orientation: landscape) {
   .sorting-area .sorting-basket {
     position: relative;
     isolation: isolate;
