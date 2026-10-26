@@ -532,3 +532,73 @@
     justify-self: auto;
   }
 }
+
+
+/* SAMSUNG SMART BOARD (landscape/tablet/desktop):
+   The previous 901px breakpoint may NOT match a touch board whose browser
+   renders at a narrower CSS viewport. It then left the duplicate basket-rim
+   over the second row. This compact fruit cluster is deliberately visible
+   inside the basket mouth, in FRONT of the basket image. Do not affect phones
+   in portrait, where the previous arrangement is already correct. */
+@media (min-width: 901px), (orientation: landscape) and (min-width: 600px) and (min-height: 440px) {
+  .sorting-area .sorting-basket {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+  }
+  .sorting-area .sorting-basket .basket-image {
+    position: absolute;
+    z-index: 0;
+  }
+  .sorting-area .sorting-basket .basket-rim {
+    display: none;
+  }
+  .sorting-area .sorting-basket .basket-apples,
+  .sorting-area.all-sorted .sorting-basket .basket-apples {
+    position: absolute;
+    inset: 23% 13% 29% 13%;
+    display: block;
+    z-index: 15;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .sorting-area .sorting-basket .basket-apples > img,
+  .sorting-area.all-sorted .sorting-basket .basket-apples > img {
+    position: absolute;
+    display: block;
+    width: 36%;
+    height: 53%;
+    max-width: none;
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain;
+    grid-column: auto;
+    justify-self: auto;
+    filter: drop-shadow(0 3px 2px rgba(68, 44, 28, .18));
+  }
+  /* Red: 2 in the back, 2 clearly visible in front. */
+  .sorting-area .basket-red .basket-apples > img:nth-child(1) {
+    top: -8%; left: 13%; z-index: 1;
+  }
+  .sorting-area .basket-red .basket-apples > img:nth-child(2) {
+    top: -8%; left: 51%; z-index: 1;
+  }
+  .sorting-area .basket-red .basket-apples > img:nth-child(3) {
+    top: 30%; left: 13%; z-index: 2;
+  }
+  .sorting-area .basket-red .basket-apples > img:nth-child(4) {
+    top: 30%; left: 51%; z-index: 2;
+  }
+  /* Yellow: 2 in the back, 1 centered in front. */
+  .sorting-area .basket-yellow .basket-apples > img:nth-child(1) {
+    top: -8%; left: 13%; z-index: 1;
+  }
+  .sorting-area .basket-yellow .basket-apples > img:nth-child(2) {
+    top: -8%; left: 51%; z-index: 1;
+  }
+  .sorting-area .basket-yellow .basket-apples > img:nth-child(3) {
+    top: 30%; left: 32%; width: 36%; z-index: 2;
+    grid-column: auto;
+    justify-self: auto;
+  }
+}
