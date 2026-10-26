@@ -484,3 +484,51 @@
     clip-path: inset(73% 0 0 0);
   }
 }
+
+
+/* SMARTBOARD FIX 2: a single basket drawing behind seven separately
+   positioned apples. The second duplicate basket image MUST NOT cover them.
+   Scoped to large displays: mobile baskets keep their existing appearance. */
+@media (min-width: 901px), (min-width: 700px) and (min-height: 650px) and (orientation: landscape) {
+  .sorting-area .sorting-basket { isolation: isolate; overflow: visible; }
+  .sorting-area .sorting-basket .basket-image { z-index: 0; }
+  .sorting-area .sorting-basket .basket-rim { display: none; }
+  .sorting-area .sorting-basket .basket-apples,
+  .sorting-area.all-sorted .sorting-basket .basket-apples {
+    position: absolute;
+    inset: 8% 9% 30% 9%;
+    display: block;
+    z-index: 10;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .sorting-area .sorting-basket .basket-apples img,
+  .sorting-area.all-sorted .sorting-basket .basket-apples img {
+    position: absolute;
+    box-sizing: border-box;
+    width: 49%;
+    height: 55%;
+    min-width: 0;
+    min-height: 0;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+    grid-column: auto;
+    justify-self: auto;
+  }
+  /* Explicit, stable two-by-two arrangement of the 4 red apples. */
+  .sorting-area .basket-red .basket-apples img:nth-child(1) { top: 0; left: 0; }
+  .sorting-area .basket-red .basket-apples img:nth-child(2) { top: 0; left: 51%; }
+  .sorting-area .basket-red .basket-apples img:nth-child(3) { top: 43%; left: 0; }
+  .sorting-area .basket-red .basket-apples img:nth-child(4) { top: 43%; left: 51%; }
+  /* Yellow basket: two apples above, one centered below. */
+  .sorting-area .basket-yellow .basket-apples img:nth-child(1) { top: 0; left: 0; }
+  .sorting-area .basket-yellow .basket-apples img:nth-child(2) { top: 0; left: 51%; }
+  .sorting-area .basket-yellow .basket-apples img:nth-child(3) {
+    top: 43%;
+    left: 25.5%;
+    width: 49%;
+    grid-column: auto;
+    justify-self: auto;
+  }
+}
